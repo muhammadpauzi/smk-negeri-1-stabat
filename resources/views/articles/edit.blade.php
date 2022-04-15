@@ -117,8 +117,6 @@
                                         <input type="hidden" name="old-article-image" value="{{ $article->image }}">
                                         @if($article->image)
                                         <img class="w-100 block rounded overflow-hidden mb-2" id="img-preview" src="{{ asset('storage/' . $article->image) }}" alt="">
-                                        @else
-                                        <img class="w-100 block rounded overflow-hidden mb-2" id="img-preview" alt="">
                                         @endif
 
                                         <input type="file" class="form-control mb-2" name="image" />

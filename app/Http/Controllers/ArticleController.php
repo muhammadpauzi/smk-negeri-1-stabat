@@ -136,7 +136,7 @@ class ArticleController extends Controller
 
         if ($request->file('image')) {
             if ($request->post('old-article-image')) Storage::delete($request->post('old-article-image'));
-            $validatedData['image'] = $request->file('image')->store('post-images');
+            $validatedData['image'] = $request->file('image')->store('article-images');
         }
 
         $validatedData['user_id'] = auth()->user()->id;

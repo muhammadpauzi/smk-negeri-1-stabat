@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @access SUPERADMIN
@@ -63,7 +64,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $rules = [
             'name' => 'required|max:255',
             'address' => 'required|max:255',
             'nuptk' => 'required|string|size:16',
@@ -71,7 +72,13 @@ class TeacherController extends Controller
             'jenis_ptk' => 'required',
             'tugas_tambahan' => 'required',
             'golongan' => 'required',
-        ]);
+            'image' => 'image|file|max:1024'
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image'))
+            $validatedData['image'] = $request->file('image')->store('teacher-images');
 
         Teacher::create($validatedData);
 
@@ -114,7 +121,13 @@ class TeacherController extends Controller
             'jenis_ptk' => 'required',
             'tugas_tambahan' => 'required',
             'golongan' => 'required',
+            'image' => 'image|file|max:1024'
         ]);
+
+        if ($request->file('image')) {
+            if ($request->post('old-teacher-image')) Storage::delete($request->post('old-teacher-image'));
+            $validatedData['image'] = $request->file('image')->store('teachers-images');
+        }
 
         $teacher->update($validatedData);
 

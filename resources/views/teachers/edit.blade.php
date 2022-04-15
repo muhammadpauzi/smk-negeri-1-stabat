@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('teachers.update', ['teacher' => $teacher->id] ) }}" method="post">
+        <form action="{{ route('teachers.update', ['teacher' => $teacher->id] ) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -74,6 +74,33 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <h4 class="card-title">Upload Teacher Image</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <!-- <div class="mb-3">
+                                    <img src="" alt="" class="image-placeholder">
+                                </div> -->
+                                    <div class="mb-3">
+                                        <div class="form-label">Teacher Image</div>
+                                        <input type="hidden" name="old-teacher-image" value="{{ $teacher->image }}">
+
+                                        @if($teacher->image)
+                                        <img class="w-100 block rounded overflow-hidden mb-2" id="img-preview" src="{{ asset('storage/' . $teacher->image) }}" alt="">
+                                        @endif
+
+                                        <input type="file" class="form-control" name="image" />
+                                        @error('image')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card mb-2">
                         <div class="card-header">
                             <h4 class="card-title">Teacher Status</h4>

@@ -72,13 +72,13 @@
                             <tr>
                                 <td><span class="text-muted">{{ $loop->iteration }}</span></td>
                                 <td>
-                                    {{ $major->title }}
+                                    {{ $major->name }}
                                 </td>
                                 <td>
                                     {{ $major->description ? Str::words($major->description, 50, '...') : 'No description' }}
                                 </td>
                                 <td>
-                                    <!-- { $major->head->name } -->
+                                    {{ $major->head->name }}
                                 </td>
                                 <td class="text-start">
                                     <span class="dropdown">

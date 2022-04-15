@@ -17,7 +17,7 @@ class MajorController extends Controller
      */
     public function index()
     {
-        $majors = Major::query();
+        $majors = Major::query()->with(['head']);
         $searchKeyword = request('search');
 
         if ($searchKeyword) {

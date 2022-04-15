@@ -11,6 +11,11 @@ class Major extends Model
 
     protected $guarded = ["id"];
 
+    public function head()
+    {
+        return $this->hasOne(Teacher::class, 'id', 'head_of_major_id');
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

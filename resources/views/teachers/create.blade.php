@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('teachers.store') }}" method="post">
+        <form action="{{ route('teachers.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -73,6 +73,27 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <h4 class="card-title">Upload Teacher Image</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <!-- <div class="mb-3">
+                                    <img src="" alt="" class="image-placeholder">
+                                </div> -->
+                                    <div class="mb-3">
+                                        <div class="form-label">Teacher Image</div>
+                                        <input type="file" class="form-control" name="image" />
+                                        @error('image')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card mb-2">
                         <div class="card-header">
                             <h4 class="card-title">Teacher Status</h4>
