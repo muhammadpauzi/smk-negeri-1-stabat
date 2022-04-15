@@ -20,25 +20,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
+    Route::resource('/articles', ArticleController::class);
 
-    Route::prefix('/articles')->group(function () {
-        Route::get('/', [ArticleController::class, 'index'])
-            ->name('articles');
+    // Route::prefix('/articles')->group(function () {
+    //     Route::get('/', [ArticleController::class, 'index'])
+    //         ->name('articles');
 
-        Route::get('/create', [ArticleController::class, 'create'])
-            ->name('articles.create');
-        Route::post('/create', [ArticleController::class, 'store']);
+    //     Route::get('/create', [ArticleController::class, 'create'])
+    //         ->name('articles.create');
+    //     Route::post('/create', [ArticleController::class, 'store']);
 
-        Route::delete('/{article:slug}', [ArticleController::class, 'destroy'])
-            ->name('articles.delete');
+    //     Route::delete('/{article:slug}', [ArticleController::class, 'destroy'])
+    //         ->name('articles.delete');
 
-        Route::get('/{article:slug}/edit', [ArticleController::class, 'edit'])
-            ->name('articles.update');
-        Route::put('/{article:slug}/edit', [ArticleController::class, 'update']);
+    //     Route::get('/{article:slug}/edit', [ArticleController::class, 'edit'])
+    //         ->name('articles.update');
+    //     Route::put('/{article:slug}/edit', [ArticleController::class, 'update']);
 
-        Route::get('/{article:slug}', [ArticleController::class, 'show'])
-            ->name('articles.show');
-    });
+    //     Route::get('/{article:slug}', [ArticleController::class, 'show'])
+    //         ->name('articles.show');
+    // });
 
     Route::delete('/sign-out', [AuthController::class, 'logout'])->name('signOut');
 });

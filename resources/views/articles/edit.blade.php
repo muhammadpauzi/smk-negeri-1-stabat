@@ -158,7 +158,7 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('articles') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('articles.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Update Article</button>
                             </div>
                         </div>

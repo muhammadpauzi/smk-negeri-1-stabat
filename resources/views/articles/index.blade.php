@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="text-muted">
-                            <form method="GET" action="{{ route('articles') }}" class="input-icon">
+                            <form method="GET" action="{{ route('articles.index') }}" class="input-icon">
                                 <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
                                 <span class="input-icon-addon">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/search -->
@@ -99,14 +99,14 @@
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                         <div class="dropdown-menu dropdown-menu-end">
 
-                                            <form action="{{ route('articles.delete', ['article' => $article->slug]) }}" method="post">
+                                            <form action="{{ route('articles.destroy', ['article' => $article->slug]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('Are you sure to delete this article?')" class="dropdown-item btn-danger">
                                                     Delete
                                                 </button>
                                             </form>
-                                            <a class="dropdown-item" href="{{ route('articles.update', ['article' => $article->slug]) }}">
+                                            <a class="dropdown-item" href="{{ route('articles.edit', ['article' => $article->slug]) }}">
                                                 Edit
                                             </a>
                                         </div>

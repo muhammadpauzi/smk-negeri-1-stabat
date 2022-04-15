@@ -115,7 +115,7 @@
                 <div class="row">
                     <div class="w-100">
                         @can('update', $article)
-                        <a class="w-100 btn btn-primary mb-2" href="{{ route('articles.update', ['article' => $article->slug]) }}">
+                        <a class="w-100 btn btn-primary mb-2" href="{{ route('articles.edit', ['article' => $article->slug]) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
@@ -127,7 +127,7 @@
                         @endcan
 
                         @can('delete', $article)
-                        <form action="{{ route('articles.delete', ['article' => $article->slug]) }}" method="post" class="w-100 block">
+                        <form action="{{ route('articles.destroy', ['article' => $article->slug]) }}" method="post" class="w-100 block">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Are you sure to delete this article?')" class="btn btn-danger w-100">

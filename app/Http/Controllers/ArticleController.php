@@ -69,7 +69,7 @@ class ArticleController extends Controller
 
         Article::create($validatedData);
 
-        return redirect()->route("articles")->with('success', 'New article has been created.');
+        return redirect()->route("articles.index")->with('success', 'New article has been created.');
     }
 
     /**
@@ -145,8 +145,10 @@ class ArticleController extends Controller
         $title = $validatedData['title'];
         $validatedData['slug'] = $this->slug($title);
         $validatedData['is_published'] = $request->boolean('is-published');
+
         $article->update($validatedData);
-        return redirect()->route("articles")->with('success', 'Article has been updated.');
+
+        return redirect()->route("articles.index")->with('success', 'Article has been updated.');
     }
 
     /**
@@ -161,7 +163,7 @@ class ArticleController extends Controller
 
         if ($article->image) Storage::delete($article->image);
         $article->delete();
-        return redirect()->route('articles')->with('success', 'Article has been deleted.');
+        return redirect()->route('articles.index')->with('success', 'Article has been deleted.');
     }
 
     public function slug(string $title): string
