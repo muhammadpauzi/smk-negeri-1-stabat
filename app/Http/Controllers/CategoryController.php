@@ -71,9 +71,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', [
+            "title" => "Edit Category",
+            "category" => $category
+        ]);
     }
 
     /**
@@ -83,9 +86,27 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $rules = [
+            'name' => 'required|max:256',
+            'description' => 'max:512'
+        ];
+
+        if ($request->slug !== $category->slug) {
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->slug !== $category->slug) {
+            $name = $validatedData['name'];
+            $validatedData['slug'] = $this->slug($name, Category::class);
+        }
+
+        $category->update($validatedData);
+
+        return redirect()->route('categories.index')->with('success', 'Category has been updated.');
     }
 
     /**
