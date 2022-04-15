@@ -30,7 +30,7 @@
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ auth()->user()->name }}</div>
-                        <div class="mt-1 small text-muted">{{ auth()->user()->role }}</div>
+                        <div class="mt-1 small text-muted">{{ Str::ucfirst(auth()->user()->role) }}</div>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -102,48 +102,42 @@
                             </span>
                         </a>
                     </li>
-                    @endif
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('majors.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/package -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3" />
-                                    <line x1="12" y1="12" x2="20" y2="7.5" />
-                                    <line x1="12" y1="12" x2="12" y2="21" />
-                                    <line x1="12" y1="12" x2="4" y2="7.5" />
-                                    <line x1="16" y1="5.25" x2="8" y2="9.75" />
+                                    <path d="M7.859 6h-2.834a2.025 2.025 0 0 0 -2.025 2.025v2.834c0 .537 .213 1.052 .593 1.432l6.116 6.116a2.025 2.025 0 0 0 2.864 0l2.834 -2.834a2.025 2.025 0 0 0 0 -2.864l-6.117 -6.116a2.025 2.025 0 0 0 -1.431 -.593z" />
+                                    <path d="M17.573 18.407l2.834 -2.834a2.025 2.025 0 0 0 0 -2.864l-7.117 -7.116" />
+                                    <path d="M6 9h-.01" />
                                 </svg>
                             </span>
                             <span class="nav-link-title">
-                                Interface
+                                Major
                             </span>
                         </a>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-menu-columns">
-                                <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="./empty.html">
-                                        Empty page
-                                    </a>
-                                    <a class="dropdown-item" href="./accordion.html">
-                                        Accordion
-                                    </a>
-                                    <div class="dropend">
-                                        <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                            Cards
-                                            <span class="badge badge-sm bg-green text-uppercase ms-2">New</span>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a href="./cards.html" class="dropdown-item">
-                                                Sample cards
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('teachers.index') }}">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                                </svg>
+                            </span>
+                            <span class="nav-link-title">
+                                Teacher
+                            </span>
+                        </a>
+                    </li>
+
+                    @endif
+
                 </ul>
                 <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                     <form action="." method="get">

@@ -1,1 +1,4 @@
 handle article if the article category was removed (cascade)
+
+handle create majors after implement create teacher (head_of_major_id) (teacher)
+implement update and create teacher and major

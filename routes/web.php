@@ -4,6 +4,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MajorController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +23,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('/articles', ArticleController::class);
-    Route::resource('/categories', CategoryController::class)->except(['show'])->middleware('auth.superadmin');
+
+    Route::middleware('auth.superadmin')->group(function () {
+        Route::resource('/categories', CategoryController::class)->except(['show']);
+        Route::resource('/majors', MajorController::class);
+        Route::resource('/teachers', TeacherController::class)->except(['show']);
+    });
 
     Route::delete('/sign-out', [AuthController::class, 'logout'])->name('signOut');
 });
