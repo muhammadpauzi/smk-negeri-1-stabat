@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::insert([
+        Category::insertOrIgnore([
             [
                 "name"  => "Umum",
                 "slug"  => "umum"

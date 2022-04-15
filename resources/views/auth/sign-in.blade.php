@@ -25,7 +25,7 @@
                 <h2 class="card-title text-center mb-4">Login to your account</h2>
                 <div class="mb-3">
                     <label class="form-label">Username</label>
-                    <input type="text" autocapitalize="false" autofocus class="form-control @error('username') is-invalid is-invalid-lite @enderror" placeholder="Enter username" name="username">
+                    <input type="text" autocapitalize="false" autofocus class="form-control @error('username') is-invalid is-invalid-lite @enderror" autocomplete="username" placeholder="Enter username" name="username">
                     @error('username')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

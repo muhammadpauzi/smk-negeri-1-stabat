@@ -11,20 +11,20 @@
                     Overview
                 </div>
                 <h2 class="page-title">
-                    Article
+                    Category
                 </h2>
             </div>
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <a href="{{ route('articles.create') }}" class="btn btn-primary">
+                    <a href="{{ route('categories.create') }}" class="btn btn-primary">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
                         </svg>
-                        Create New Article
+                        Create New Category
                     </a>
                 </div>
             </div>
@@ -36,11 +36,11 @@
             <div class="card">
                 <div class="card-header row">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <h3 class="card-title">List Articles</h3>
+                        <h3 class="card-title">List Categories</h3>
                     </div>
                     <div class="col-md-6">
                         <div class="text-muted">
-                            <form method="GET" action="{{ route('articles.index') }}" class="input-icon">
+                            <form method="GET" action="{{ route('categories.index') }}" class="input-icon">
                                 <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
                                 <span class="input-icon-addon">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/search -->
@@ -60,53 +60,42 @@
                         <thead>
                             <tr>
                                 <th class="w-1">No.</th>
-                                <th>Thumbnail & Title</th>
+                                <th>Name</th>
+                                <th>Description</th>
                                 <th>Created at</th>
-                                <th>View (s)</th>
-                                <th>Status</th>
+                                <th>Updated at</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if( count($articles) > 0 )
-                            @foreach($articles as $article)
+                            @if( count($categories) > 0 )
+                            @foreach($categories as $category)
                             <tr>
                                 <td><span class="text-muted">{{ $loop->iteration }}</span></td>
-                                <td class="flex">
-                                    <div class="d-flex py-1 align-items-center">
-                                        <img class="avatar me-2" src="{{ asset('storage/' . $article->image) }}"></img>
-                                        <div class="flex-fill">
-                                            <a href="{{ route('articles.show', ['article' => $article->slug ] ) }}" class="text-reset" tabindex="-1">{{ $article->title }}</a>
-                                        </div>
-                                    </div>
+                                <td>
+                                    {{ $category->name }}
                                 </td>
                                 <td>
-                                    {{ $article->created_at->format('d M Y H:i') }}
+                                    {{ $category->description ?? 'No description' }}
                                 </td>
                                 <td>
-                                    {{ $article->views }} x
+                                    {{ $category->created_at?->format('d M Y H:i') }}
                                 </td>
                                 <td>
-                                    @if( $article->is_published )
-                                    <span class="badge bg-success me-1"></span> Published
-                                    @else
-                                    <span class="badge bg-danger me-1"></span>
-                                    Not published yet
-                                    @endif
+                                    {{ $category->updated_at == $category->created_at ? 'Not updated yet' : $category->updated_at->format('d M Y H:i') }}
                                 </td>
                                 <td class="text-start">
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-
-                                            <form action="{{ route('articles.destroy', ['article' => $article->slug]) }}" method="post">
+                                            <form action="{{ route('categories.destroy', ['category' => $category->slug]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Are you sure to delete this article?')" class="dropdown-item btn-danger">
+                                                <button type="submit" onclick="return confirm('Are you sure to delete this category?')" class="dropdown-item btn-danger">
                                                     Delete
                                                 </button>
                                             </form>
-                                            <a class="dropdown-item" href="{{ route('articles.edit', ['article' => $article->slug]) }}">
+                                            <a class="dropdown-item" href="{{ route('categories.edit', ['category' => $category->slug]) }}">
                                                 Edit
                                             </a>
                                         </div>
@@ -117,7 +106,7 @@
                             @else
                             <tr>
                                 <td colspan="5">
-                                    <p class="text-danger py-3 m-0 text-center">Article doesn't exists, <a href="{{ route('articles.create') }}">Create article now!</a></p>
+                                    <p class="text-danger py-3 m-0 text-center">Categories doesn't exists, <a href="{{ route('categories.create') }}">Create category now!</a></p>
                                 </td>
                             </tr>
                             @endif
@@ -126,7 +115,7 @@
                 </div>
 
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    {{ $articles->links() }}
+                    {{ $categories->links() }}
                 </div>
             </div>
         </div>

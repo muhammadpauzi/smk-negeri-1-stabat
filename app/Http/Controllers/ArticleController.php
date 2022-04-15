@@ -6,8 +6,6 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use DataTables;
 
 class ArticleController extends Controller
 {
@@ -64,7 +62,7 @@ class ArticleController extends Controller
         $validatedData['image'] = $request->file('image')->store('article-images');
         $validatedData['user_id'] = auth()->user()->id;
         $title = $validatedData['title'];
-        $validatedData['slug'] = $this->slug($title);
+        $validatedData['slug'] = $this->slug($title, Article::class);
         $validatedData['is_published'] = $request->boolean('is-published');
 
         Article::create($validatedData);
@@ -142,13 +140,15 @@ class ArticleController extends Controller
         }
 
         $validatedData['user_id'] = auth()->user()->id;
-        $title = $validatedData['title'];
-        $validatedData['slug'] = $this->slug($title);
         $validatedData['is_published'] = $request->boolean('is-published');
+        if ($request->slug !== $article->slug) {
+            $title = $validatedData['title'];
+            $validatedData['slug'] = $this->slug($title);
+        }
 
         $article->update($validatedData);
 
-        return redirect()->route("articles.index")->with('success', 'Article has been updated.');
+        return redirect()->back()->with('success', 'Article has been updated.');
     }
 
     /**
@@ -164,20 +164,5 @@ class ArticleController extends Controller
         if ($article->image) Storage::delete($article->image);
         $article->delete();
         return redirect()->route('articles.index')->with('success', 'Article has been deleted.');
-    }
-
-    public function slug(string $title): string
-    {
-        $slug = Str::of($title)->slug()->value;
-        while (true) {
-            $article = Article::query()->where('slug', '=', $slug)->get();
-            if ($article->isNotEmpty()) {
-                $slug .= '-' . Str::lower(Str::random(5));
-                continue;
-            } else {
-                break;
-            }
-        }
-        return $slug;
     }
 }
