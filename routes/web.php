@@ -29,7 +29,6 @@ Route::middleware('auth')->group(function () {
             ->name('articles.create');
         Route::post('/create', [ArticleController::class, 'store']);
 
-
         Route::delete('/{article:slug}', [ArticleController::class, 'destroy'])
             ->name('articles.delete');
 

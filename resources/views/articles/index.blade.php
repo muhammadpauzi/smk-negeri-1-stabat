@@ -81,7 +81,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    {{ $article->created_at->format('d M Y') }}
+                                    {{ $article->created_at->format('d M Y H:i') }}
                                 </td>
                                 <td>
                                     {{ $article->views }} x
