@@ -5,7 +5,7 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href=".">
-                Admin | SMKN 1 Stabat
+                Dashboard | SMKN 1 Stabat
             </a>
         </h1>
         <div class="navbar-nav flex-row order-md-last">
