@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/categories', CategoryController::class)->except(['index', 'show']);
         Route::resource('/majors', MajorController::class)->except(['index', 'show']);
         Route::resource('/teachers', TeacherController::class)->except(['index', 'show']);
+        Route::resource('/students', StudentController::class)->except(['index', 'show']);
     });
 
     // for public (editor, superadmin and all) to see major detail page
@@ -39,6 +41,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
     Route::get('/teachers/{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
+
+    Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+    Route::get('/students/{student}', [StudentController::class, 'show'])->name('students.show');
 
     Route::delete('/sign-out', [AuthController::class, 'logout'])->name('signOut');
 });
