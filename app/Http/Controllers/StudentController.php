@@ -78,25 +78,22 @@ class StudentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student)
     {
-        //
+        $rombongan_belajars = Student::query()->select('rombongan_belajar')->distinct()->get();
+        $religions = Student::query()->select('religion')->distinct()->get();
+
+        return view('students.edit', [
+            "title" => "Edit Student",
+            "religions" => $religions,
+            "rombongan_belajars" => $rombongan_belajars,
+            "student" => $student
+        ]);
     }
 
     /**
@@ -106,9 +103,22 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Student $student)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:256',
+            'nisn' => 'required|string|size:10',
+            'gender' => 'required|in:pria,wanita',
+            'place_of_birth' => 'required|max:256',
+            'date_of_birth' => 'required|date',
+            'religion' => 'required|max:32',
+            'address' => 'required|max:256',
+            'rombongan_belajar' => 'required|max:32',
+        ]);
+
+        $student->update($validatedData);
+
+        return redirect()->route('students.index')->with('success', 'Student has been updated.');
     }
 
     /**
@@ -117,8 +127,9 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return redirect()->route('students.index')->with('success', 'Student has been deleted.');
     }
 }
