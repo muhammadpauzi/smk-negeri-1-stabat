@@ -141,6 +141,8 @@
     <!-- Tabler Core -->
     <script src="{{ asset('tabler/dist/js/tabler.min.js') }}"></script>
     <script src="{{ asset('tabler/dist/js/demo.min.js') }}"></script>
+    <!-- My Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

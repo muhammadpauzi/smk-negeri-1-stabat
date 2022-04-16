@@ -15,7 +15,7 @@
                 </h2>
             </div>
             <!-- Page title actions -->
-            @if( auth()->user()->isSuperadmin() )
+            @if( auth()->user()->isSuperadminOrAdmin() )
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
                     <a href="{{ route('students.create') }}" class="btn btn-primary">
@@ -70,7 +70,7 @@
                                 <th>Religion</th>
                                 <th>Address</th>
                                 <th>Rombongan Belajar</th>
-                                @if( auth()->user()->isSuperadmin() )
+                                @if( auth()->user()->isSuperadminOrAdmin() )
                                 <th></th>
                                 @endif
                             </tr>
@@ -104,7 +104,7 @@
                                 <td>
                                     {{ $student->rombongan_belajar }}
                                 </td>
-                                @if( auth()->user()->isSuperadmin() )
+                                @if( auth()->user()->isSuperadminOrAdmin() )
                                 <td class="text-start">
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>

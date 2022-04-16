@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,17 +21,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// roles & permissions
+// superadmin: can all (users, articles, categories, students, teachers, majors)
+// admin: can all (articles, categories, students, teachers, majors)
+// editor: can only (articles)
+
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('/articles', ArticleController::class);
 
-    Route::middleware('auth.superadmin')->group(function () {
+    Route::middleware(['role:admin,editor'])->group(function () {
+        Route::resource('/articles', ArticleController::class)->except(['index', 'show']);
+    });
+
+    Route::middleware(['role:admin'])->group(function () {
         Route::resource('/categories', CategoryController::class)->except(['index', 'show']);
         Route::resource('/majors', MajorController::class)->except(['index', 'show']);
         Route::resource('/teachers', TeacherController::class)->except(['index', 'show']);
         Route::resource('/students', StudentController::class)->except(['index', 'show']);
     });
+
+    Route::middleware('auth.superadmin')->group(function () {
+        Route::resource('/users', UserController::class);
+    });
+
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+    Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
     // for public (editor, superadmin and all) to see major detail page
     Route::get('/majors', [MajorController::class, 'index'])->name('majors.index');
@@ -44,6 +60,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/students', [StudentController::class, 'index'])->name('students.index');
     Route::get('/students/{student}', [StudentController::class, 'show'])->name('students.show');
+
 
     Route::delete('/sign-out', [AuthController::class, 'logout'])->name('signOut');
 });

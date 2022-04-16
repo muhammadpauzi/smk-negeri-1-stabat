@@ -22,11 +22,11 @@ class MajorPolicy
 
     public function update(User $user, Major $major)
     {
-        return $user->isSuperadmin();
+        return $user->isSuperadminOrAdmin();
     }
 
     public function delete(User $user, Major $major)
     {
-        return $user->isSuperadmin();
+        return $user->isSuperadminOrAdmin();
     }
 }

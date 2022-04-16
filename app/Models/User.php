@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'username',
         'password',
     ];
@@ -46,6 +47,22 @@ class User extends Authenticatable
     public function isSuperadmin()
     {
         return $this->role === 'superadmin';
+    }
+
+    public function isSuperadminOrAdmin(): bool
+    {
+        return ($this->isSuperadmin() || $this->isAdmin());
+        // return in_array($this->role, ['superadmin', 'admin']);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isEditor()
+    {
+        return $this->role === 'editor';
     }
 
     public function articles()

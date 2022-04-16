@@ -11,25 +11,23 @@
                     Overview
                 </div>
                 <h2 class="page-title">
-                    Teacher
+                    User
                 </h2>
             </div>
             <!-- Page title actions -->
-            @if( auth()->user()->isSuperadminOrAdmin() )
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <a href="{{ route('teachers.create') }}" class="btn btn-primary">
+                    <a href="{{ route('users.create') }}" class="btn btn-primary">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
                         </svg>
-                        Create New Teacher
+                        Create New User
                     </a>
                 </div>
             </div>
-            @endif
         </div>
     </div>
 
@@ -38,11 +36,11 @@
             <div class="card">
                 <div class="card-header row">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <h3 class="card-title">List Teachers</h3>
+                        <h3 class="card-title">List Users</h3>
                     </div>
                     <div class="col-md-6">
                         <div class="text-muted">
-                            <form method="GET" action="{{ route('teachers.index') }}" class="input-icon">
+                            <form method="GET" action="{{ route('users.index') }}" class="input-icon">
                                 <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
                                 <span class="input-icon-addon">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/search -->
@@ -63,68 +61,52 @@
                             <tr>
                                 <th class="w-1">No.</th>
                                 <th>Name</th>
-                                <th>NUPTK</th>
-                                <th>NIP</th>
-                                <th>Address</th>
-                                <th>Jenis PTK</th>
-                                <th>Tugas Tambahan</th>
-                                <th>Golongan</th>
-                                @if( auth()->user()->isSuperadminOrAdmin() )
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Role</th>
                                 <th></th>
-                                @endif
                             </tr>
                         </thead>
                         <tbody>
-                            @if( count($teachers) > 0 )
-                            @foreach($teachers as $teacher)
+                            @if( count($users) > 0 )
+                            @foreach($users as $user)
                             <tr>
                                 <td><span class="text-muted">{{ $loop->iteration }}</span></td>
                                 <td>
-                                    {{ $teacher->name }}
+                                    {{ $user->name  }}
                                 </td>
                                 <td>
-                                    {{ $teacher->nuptk  }}
+                                    {{ $user->username  }}
                                 </td>
                                 <td>
-                                    {{ $teacher->nip }}
+                                    {{ $user->email  }}
                                 </td>
                                 <td>
-                                    {{ $teacher->address }}
+                                    {{ Str::ucfirst($user->role)  }}
                                 </td>
-                                <td>
-                                    {{ $teacher->jenis_ptk }}
-                                </td>
-                                <td>
-                                    {{ $teacher->tugas_tambahan }}
-                                </td>
-                                <td>
-                                    {{ $teacher->golongan }}
-                                </td>
-                                @if( auth()->user()->isSuperadminOrAdmin() )
                                 <td class="text-start">
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <form action="{{ route('teachers.destroy', ['teacher' => $teacher->id]) }}" method="post">
+                                            <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Are you sure to delete this teacher?')" class="dropdown-item btn-danger">
+                                                <button type="submit" onclick="return confirm('Are you sure to delete this user?')" class="dropdown-item btn-danger">
                                                     Delete
                                                 </button>
                                             </form>
-                                            <a class="dropdown-item" href="{{ route('teachers.edit', ['teacher' => $teacher->id]) }}">
+                                            <a class="dropdown-item" href="{{ route('users.edit', ['user' => $user->id]) }}">
                                                 Edit
                                             </a>
                                         </div>
                                     </span>
                                 </td>
-                                @endif
                             </tr>
                             @endforeach
                             @else
                             <tr>
                                 <td colspan="8">
-                                    <p class="text-danger py-3 m-0 text-center">Teachers doesn't exists, <a href="{{ route('teachers.create') }}">Create teacher now!</a></p>
+                                    <p class="text-danger py-3 m-0 text-center">Users doesn't exists, <a href="{{ route('users.create') }}">Create user now!</a></p>
                                 </td>
                             </tr>
                             @endif
@@ -133,7 +115,7 @@
                 </div>
 
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    {{ $teachers->links() }}
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

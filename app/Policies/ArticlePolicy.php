@@ -22,11 +22,11 @@ class ArticlePolicy
 
     public function update(User $user, Article $article)
     {
-        return $user->isSuperadmin() || $article->ownedBy($user);
+        return $user->isSuperadminOrAdmin() || $article->ownedBy($user);
     }
 
     public function delete(User $user, Article $article)
     {
-        return $user->isSuperadmin() || $article->ownedBy($user);
+        return $user->isSuperadminOrAdmin() || $article->ownedBy($user);
     }
 }
