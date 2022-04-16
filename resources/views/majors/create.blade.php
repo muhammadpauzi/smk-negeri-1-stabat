@@ -17,51 +17,39 @@
             <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Article
+                    Major
                 </div>
                 <h2 class="page-title">
-                    Create New Article
+                    Create New Major
                 </h2>
             </div>
         </div>
 
-        <form action="{{ route('articles.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('majors.store') }}" method="post">
             @csrf
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-2">
                         <div class="card-header">
-                            <h4 class="card-title">Form Create Article</h4>
+                            <h4 class="card-title">Form Create Major</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="title">Title of article <span class="text-danger">*</span></label>
-                                        <input type="text" id="title" class="form-control" name="title" value="{{ old('title') }}">
-                                        @error('title')
+                                        <label class="form-label" for="name">Name of major <span class="text-danger">*</span></label>
+                                        <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}">
+                                        @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
-                                        <textarea id="description" class="form-control" name="description" rows="6" placeholder="Description of article..">{{ old('description') }}</textarea>
+                                        <textarea id="description" class="form-control" name="description" rows="6" placeholder="Address of major..">{{ old('description') }}</textarea>
                                         @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Publish</label>
-                                        <label class="form-check mb-2">
-                                            <input class="form-check-input" type="checkbox" @if( old('is-published') ) checked @endif name="is-published">
-                                            <span class="form-check-label">
-                                                Publish Article
-                                            </span>
-                                            <span class="form-check-description">
-                                                Publish this article after it is made.
-                                            </span>
-                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -71,48 +59,23 @@
                 <div class="col-md-6">
                     <div class="card mb-2">
                         <div class="card-header">
-                            <h4 class="card-title">Category of Article</h4>
+                            <h4 class="card-title">Head of Major</h4>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="category">Category <span class="text-danger">*</span></label>
-                                        <select class="form-select" name="category_id" id="category">
-                                            @foreach($categories as $category)
-                                            @if( old('category_id') == $category->id)
-                                            <option selected value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @else
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endif
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-2">
-                        <div class="card-header">
-                            <h4 class="card-title">Upload Thumbnail Image</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <!-- <div class="mb-3">
-                                    <img src="" alt="" class="image-placeholder">
-                                </div> -->
-                                    <div class="mb-3">
-                                        <div class="form-label">Thumbnail Image <span class="text-danger">*</span></div>
-                                        <input type="file" class="form-control" name="image" />
-                                        @error('image')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="head">Teacher Name <span class="text-danger">*</span></label>
+                                <select type="text" class="form-select" placeholder="Select a teacher" name="head_of_major_id" id="select-head">
+                                    @foreach($heads as $head)
+                                    @if( old('head_of_major_id') == $head->id)
+                                    <option selected value="{{ $head->id }}">{{ $head->name }}</option>
+                                    @else
+                                    <option value="{{ $head->id }}">{{ $head->name }}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                                @error('head_of_major_id')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -123,7 +86,7 @@
                 <div class="col">
                     <div class="card mb-2">
                         <div class="card-header">
-                            <h4 class="card-title">Content of article <span class="text-danger">*</span></h4>
+                            <h4 class="card-title">Content of major page <span class="text-danger">*</span></h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -154,8 +117,8 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('articles.index') }}" class="btn btn-light">Cancel</a>
-                                <button type="submit" class="btn btn-primary">Create Article</button>
+                                <a href="{{ route('majors.index') }}" class="btn btn-light">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Create Major</button>
                             </div>
                         </div>
                     </div>
@@ -164,9 +127,10 @@
         </form>
     </div>
 </div>
+
 <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
 <script>
-   ClassicEditor
+    ClassicEditor
         .create(document.querySelector('#editor'))
         .then(newEditor => {
             newEditor.model.document.on('change:data', () => {
@@ -177,5 +141,33 @@
         .catch(error => {
             console.error(error);
         });
+</script>
+<script src="{{ asset('tabler/dist/libs/tom-select/dist/js/tom-select.base.min.js') }}"></script>
+<script>
+    // @formatter:off
+    document.addEventListener("DOMContentLoaded", function() {
+        var el;
+        window.TomSelect && (new TomSelect(el = document.getElementById('select-head'), {
+            copyClassesToDropdown: false,
+            dropdownClass: 'dropdown-menu',
+            optionClass: 'dropdown-item',
+            controlInput: '<input>',
+            render: {
+                item: function(data, escape) {
+                    if (data.customProperties) {
+                        return '<div><span class="dropdown-item-indicator">' + data.customProperties + '</span>' + escape(data.text) + '</div>';
+                    }
+                    return '<div>' + escape(data.text) + '</div>';
+                },
+                option: function(data, escape) {
+                    if (data.customProperties) {
+                        return '<div><span class="dropdown-item-indicator">' + data.customProperties + '</span>' + escape(data.text) + '</div>';
+                    }
+                    return '<div>' + escape(data.text) + '</div>';
+                },
+            },
+        }));
+    });
+    // @formatter:on
 </script>
 @endsection

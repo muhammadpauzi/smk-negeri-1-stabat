@@ -143,7 +143,7 @@ class ArticleController extends Controller
         $validatedData['is_published'] = $request->boolean('is-published');
         if ($request->slug !== $article->slug) {
             $title = $validatedData['title'];
-            $validatedData['slug'] = $this->slug($title);
+            $validatedData['slug'] = $this->slug($title, Article::class);
         }
 
         $article->update($validatedData);

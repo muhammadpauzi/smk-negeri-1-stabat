@@ -78,7 +78,11 @@
                                     {{ $major->description ? Str::words($major->description, 50, '...') : 'No description' }}
                                 </td>
                                 <td>
-                                    {{ $major->head->name }}
+                                    @if( $major->head?->name )
+                                    <a href="{{ route('teachers.index', ['search' => $major->head->name ]) }}"> {{ $major->head->name }}</a>
+                                    @else
+                                    Teacher was deleted.
+                                    @endif
                                 </td>
                                 <td class="text-start">
                                     <span class="dropdown">

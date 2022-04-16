@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Major;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 /**
@@ -39,7 +40,10 @@ class MajorController extends Controller
      */
     public function create()
     {
-        //
+        return view('majors.create', [
+            "title" => "Create New Major",
+            "heads" => Teacher::all()
+        ]);
     }
 
     /**
@@ -50,7 +54,19 @@ class MajorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:256',
+            'head_of_major_id'   => 'required|numeric',
+            'description'   => 'required|max:512',
+            'body'   => 'required'
+        ]);
+
+        $name = $validatedData['name'];
+        $validatedData['slug'] = $this->slug($name, Major::class);
+
+        Major::create($validatedData);
+
+        return redirect()->route("majors.index")->with('success', 'New major has been created.');
     }
 
     /**
@@ -70,9 +86,13 @@ class MajorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Major $major)
     {
-        //
+        return view('majors.edit', [
+            "title" => "Edit Major",
+            "heads" => Teacher::all(),
+            "major" => $major
+        ]);
     }
 
     /**
@@ -82,9 +102,25 @@ class MajorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Major $major)
     {
-        //
+        $rules = [
+            'name' => 'required|max:256',
+            'head_of_major_id'   => 'required|numeric',
+            'description'   => 'required|max:512',
+            'body'   => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->slug !== $major->slug) {
+            $name = $validatedData['name'];
+            $validatedData['slug'] = $this->slug($name, Major::class);
+        }
+
+        $major->update($validatedData);
+
+        return redirect()->route('majors.index')->with('success', 'Major has been updated.');
     }
 
     /**
@@ -93,8 +129,9 @@ class MajorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Major $major)
     {
-        //
+        $major->delete();
+        return redirect()->route('majors.index')->with('success', 'Major has been deleted.');
     }
 }
