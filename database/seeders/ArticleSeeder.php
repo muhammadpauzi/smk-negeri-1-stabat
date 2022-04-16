@@ -2,11 +2,15 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Article;
+use Database\Factories\ArticleFactory;
 use Illuminate\Database\Seeder;
 
 class ArticleSeeder extends Seeder
 {
+
+    protected $model = Article::class;
+
     /**
      * Run the database seeds.
      *
@@ -14,6 +18,6 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Article::factory()->count(100)->create();
     }
 }

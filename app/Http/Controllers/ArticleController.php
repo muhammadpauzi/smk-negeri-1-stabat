@@ -21,7 +21,9 @@ class ArticleController extends Controller
         $searchKeyword = request('search');
 
         if ($searchKeyword) {
-            $articles = $articles->where('title', 'LIKE', "%$searchKeyword%");
+            $articles = $articles->where('title', 'LIKE', "%$searchKeyword%")
+                ->orWhere('description', 'LIKE', "%$searchKeyword%")
+                ->orWhere('body', 'LIKE', "%$searchKeyword%");
         }
 
         // $limit = request()->get('limit', 10);
