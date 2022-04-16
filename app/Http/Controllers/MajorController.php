@@ -75,9 +75,12 @@ class MajorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Major $major)
     {
-        //
+        return view('majors.show', [
+            "title" => "$major->name",
+            "major" => $major,
+        ]);
     }
 
     /**
@@ -113,7 +116,7 @@ class MajorController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if ($request->slug !== $major->slug) {
+        if ($request->post('old-name') !== $request->post('name')) {
             $name = $validatedData['name'];
             $validatedData['slug'] = $this->slug($name, Major::class);
         }

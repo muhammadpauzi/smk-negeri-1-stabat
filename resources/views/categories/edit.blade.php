@@ -32,6 +32,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="name">Name of category <span class="text-danger">*</span></label>
                                         <input type="text" id="name" class="form-control" name="name" autocomplete="category-name" value="{{ old('name', $category->name) }}">
+                                        <input type="hidden" id="old-name" class="form-control" name="old-name" value="{{ old('name', $category->name) }}">
                                         @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror

@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
         return view('articles.index', [
             "title" => "Articles",
-            "articles" => $articles->latest()->paginate(1)->withQueryString()
+            "articles" => $articles->latest()->paginate(20)->withQueryString()
         ]);
     }
 
@@ -141,14 +141,14 @@ class ArticleController extends Controller
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['is_published'] = $request->boolean('is-published');
-        if ($request->slug !== $article->slug) {
+        if ($request->post('old-title') !== $request->post('title')) {
             $title = $validatedData['title'];
             $validatedData['slug'] = $this->slug($title, Article::class);
         }
 
         $article->update($validatedData);
 
-        return redirect()->back()->with('success', 'Article has been updated.');
+        return redirect()->route('articles.index')->with('success', 'Article has been updated.');
     }
 
     /**

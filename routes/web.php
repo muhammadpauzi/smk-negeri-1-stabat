@@ -26,9 +26,12 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('auth.superadmin')->group(function () {
         Route::resource('/categories', CategoryController::class)->except(['show']);
-        Route::resource('/majors', MajorController::class);
+        Route::resource('/majors', MajorController::class)->except('show');
         Route::resource('/teachers', TeacherController::class)->except(['show']);
     });
+
+    // for public (editor, superadmin and all) to see major detail page
+    Route::get('/majors/{major}', [MajorController::class, 'show'])->name('majors.show');
 
     Route::delete('/sign-out', [AuthController::class, 'logout'])->name('signOut');
 });

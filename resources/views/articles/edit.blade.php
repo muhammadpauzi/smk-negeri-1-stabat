@@ -41,6 +41,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="title">Title of article <span class="text-danger">*</span></label>
                                         <input type="text" id="title" class="form-control" name="title" value="{{ old('title', $article->title) }}">
+                                        <input type="hidden" id="old-title" class="form-control" name="old-title" value="{{ old('title', $article->title) }}">
                                         @error('title')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -168,7 +169,7 @@
 </div>
 <script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
 <script>
-   ClassicEditor
+    ClassicEditor
         .create(document.querySelector('#editor'))
         .then(newEditor => {
             newEditor.model.document.on('change:data', () => {

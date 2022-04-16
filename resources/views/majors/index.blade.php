@@ -72,7 +72,7 @@
                             <tr>
                                 <td><span class="text-muted">{{ $loop->iteration }}</span></td>
                                 <td>
-                                    {{ $major->name }}
+                                    <a href="{{ route('majors.show', ['major' => $major->slug]) }}" class="text-reset">{{ $major->name }}</a>
                                 </td>
                                 <td>
                                     {{ $major->description ? Str::words($major->description, 50, '...') : 'No description' }}

@@ -41,6 +41,7 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="name">Name of major <span class="text-danger">*</span></label>
                                         <input type="text" id="name" class="form-control" name="name" value="{{ old('name', $major->name) }}">
+                                        <input type="hidden" id="old-name" class="form-control" name="old-name" value="{{ old('name', $major->name) }}">
                                         @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -77,6 +78,11 @@
                                 @error('head_of_major_id')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Slug</label>
+                                <div class="form-control-plaintext">{{ $major->slug }}</div>
+                                <input type="hidden" name="slug" value="{{ $major->slug }}">
                             </div>
                         </div>
                     </div>

@@ -99,7 +99,7 @@ class CategoryController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if ($request->slug !== $category->slug) {
+        if ($request->post('old-name') !== $request->post('name')) {
             $name = $validatedData['name'];
             $validatedData['slug'] = $this->slug($name, Category::class);
         }
