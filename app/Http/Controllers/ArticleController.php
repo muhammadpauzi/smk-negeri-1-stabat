@@ -24,6 +24,15 @@ class ArticleController extends Controller
             $articles = $articles->where('title', 'LIKE', "%$searchKeyword%");
         }
 
+        // $limit = request()->get('limit', 10);
+        // if ($limit === 'All') {
+        //     $articles = $articles->latest();
+        // } else if (is_numeric($limit)) {
+        //     $articles = $articles->latest()->paginate((int) $limit)->withQueryString();
+        // } else {
+        //     $articles = $articles->latest()->paginate(20)->withQueryString();
+        // }
+
         return view('articles.index', [
             "title" => "Articles",
             "articles" => $articles->latest()->paginate(20)->withQueryString()

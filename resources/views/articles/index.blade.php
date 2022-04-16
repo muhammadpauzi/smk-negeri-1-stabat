@@ -39,19 +39,32 @@
                         <h3 class="card-title">List Articles</h3>
                     </div>
                     <div class="col-md-6">
-                        <div class="text-muted">
-                            <form method="GET" action="{{ route('articles.index') }}" class="input-icon">
-                                <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
-                                <span class="input-icon-addon">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/search -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <circle cx="10" cy="10" r="7" />
-                                        <line x1="21" y1="21" x2="15" y2="15" />
-                                    </svg>
-                                </span>
-                            </form>
-                        </div>
+                        <form method="GET" action="{{ route('articles.index') }}" class="input-icon">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select class="form-select" name="limit" id="limit">
+                                        <option selected value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                        <option value="All">All</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="text-muted">
+                                        <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
+                                        <span class="input-icon-addon">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <circle cx="10" cy="10" r="7" />
+                                                <line x1="21" y1="21" x2="15" y2="15" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
