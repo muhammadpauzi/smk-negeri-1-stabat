@@ -25,13 +25,20 @@ Route::middleware('auth')->group(function () {
     Route::resource('/articles', ArticleController::class);
 
     Route::middleware('auth.superadmin')->group(function () {
-        Route::resource('/categories', CategoryController::class)->except(['show']);
-        Route::resource('/majors', MajorController::class)->except('show');
-        Route::resource('/teachers', TeacherController::class)->except(['show']);
+        Route::resource('/categories', CategoryController::class)->except(['index', 'show']);
+        Route::resource('/majors', MajorController::class)->except(['index', 'show']);
+        Route::resource('/teachers', TeacherController::class)->except(['index', 'show']);
     });
 
     // for public (editor, superadmin and all) to see major detail page
+    Route::get('/majors', [MajorController::class, 'index'])->name('majors.index');
     Route::get('/majors/{major}', [MajorController::class, 'show'])->name('majors.show');
+
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+
+    Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+    Route::get('/teachers/{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
 
     Route::delete('/sign-out', [AuthController::class, 'logout'])->name('signOut');
 });

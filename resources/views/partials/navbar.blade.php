@@ -86,7 +86,7 @@
                             </span>
                         </a>
                     </li>
-                    @if( auth()->user()->isSuperadmin() )
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('categories.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -135,10 +135,8 @@
                             </span>
                         </a>
                     </li>
-
-                    @endif
-
                 </ul>
+
                 <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                     <form action="." method="get">
                         <div class="input-icon">

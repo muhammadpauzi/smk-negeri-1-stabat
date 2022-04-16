@@ -15,6 +15,7 @@
                 </h2>
             </div>
             <!-- Page title actions -->
+            @if( auth()->user()->isSuperadmin() )
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
                     <a href="{{ route('majors.create') }}" class="btn btn-primary">
@@ -28,6 +29,7 @@
                     </a>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 
@@ -63,7 +65,9 @@
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Head of Major</th>
+                                @if( auth()->user()->isSuperadmin() )
                                 <th></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -84,6 +88,7 @@
                                     Teacher was deleted.
                                     @endif
                                 </td>
+                                @if( auth()->user()->isSuperadmin() )
                                 <td class="text-start">
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
@@ -102,6 +107,7 @@
                                         </div>
                                     </span>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                             @else
