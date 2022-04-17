@@ -19,7 +19,11 @@
     <link href="{{ asset('tabler/dist/css/tabler-flags.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/tabler-vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/dist/css/demo.min.css') }}" rel="stylesheet" />
-
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Source Sans Pro", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>
     @yield('head')
 </head>
 

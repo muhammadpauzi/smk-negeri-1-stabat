@@ -1,13 +1,6 @@
 @extends('layouts.app')
 
-@section('head')
-<link rel="stylesheet" href="{{ asset('ckeditor.css') }}">
-<style>
-    .ck-editor__editable_inline {
-        min-height: 400px;
-    }
-</style>
-@endsection
+@include('partials.ckeditor-style');
 
 @section('content')
 <div class="container-xl">
@@ -128,20 +121,7 @@
     </div>
 </div>
 
-<script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .then(newEditor => {
-            newEditor.model.document.on('change:data', () => {
-                window.editor.textContent = `"${newEditor.getData()}"`;
-            });
-
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
+@include('partials.ckeditor-script')
 <script src="{{ asset('tabler/dist/libs/tom-select/dist/js/tom-select.base.min.js') }}"></script>
 <script>
     // @formatter:off
