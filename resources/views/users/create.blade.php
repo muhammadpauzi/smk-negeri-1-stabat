@@ -8,10 +8,10 @@
             <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Student
+                    User
                 </div>
                 <h2 class="page-title">
-                    Create New Student
+                    Create New User
                 </h2>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 <div class="col">
                     <div class="card mb-2">
                         <div class="card-header">
-                            <h4 class="card-title">Form Create Student</h4>
+                            <h4 class="card-title">Form Create User</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -122,7 +122,7 @@
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
                                 <a href="{{ route('users.index') }}" class="btn btn-light">Cancel</a>
-                                <button type="submit" class="btn btn-primary">Create Student</button>
+                                <button type="submit" class="btn btn-primary">Create User</button>
                             </div>
                         </div>
                     </div>

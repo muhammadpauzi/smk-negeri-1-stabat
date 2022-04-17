@@ -102,9 +102,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        if ($user->isSuperadmin()) return abort(403, "You can edit user with role Superadmin.");
+
+        $roles = ['admin', 'editor'];
+        return view('users.edit', [
+            "title" => "Edit User",
+            "user" => $user,
+            "roles" => $roles
+        ]);
     }
 
     /**
@@ -114,9 +121,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if ($user->isSuperadmin()) return abort(403, "You can edit user with role Superadmin.");
+
+        $rules = [
+            'name' => 'required|max:255',
+            'username' => 'required|alpha_dash|max:256',
+            'email' => 'required|email|max:256',
+            'role' => 'required|in:admin,editor',
+        ];
+
+        if ($user->username !== $request->username) $rules['username'] .= '|unique:users';
+        if ($user->email !== $request->email) $rules['email'] .= '|unique:users';
+
+        $validatedData = $request->validate($rules);
+
+        $user->update($validatedData);
+
+        return redirect()->route('users.index')->with('success', 'User has been updated.');
     }
 
     /**
@@ -125,9 +148,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         // prevent if superadmin delete his own user account
-        //
+        if ($user->isSuperadmin()) return abort(403, "You can delete user with role Superadmin.");
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User has been deleted.');
     }
 }
