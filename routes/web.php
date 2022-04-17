@@ -30,18 +30,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
-    Route::middleware(['role:admin,editor'])->group(function () {
+    Route::middleware(['role:superadmin,admin,editor'])->group(function () {
         Route::resource('/articles', ArticleController::class)->except(['index', 'show']);
     });
 
-    Route::middleware(['role:admin'])->group(function () {
+    Route::middleware(['role:superadmin,admin'])->group(function () {
         Route::resource('/categories', CategoryController::class)->except(['index', 'show']);
         Route::resource('/majors', MajorController::class)->except(['index', 'show']);
         Route::resource('/teachers', TeacherController::class)->except(['index', 'show']);
         Route::resource('/students', StudentController::class)->except(['index', 'show']);
     });
 
-    Route::middleware('auth.superadmin')->group(function () {
+    Route::middleware('role:superadmin')->group(function () {
         Route::resource('/users', UserController::class);
     });
 

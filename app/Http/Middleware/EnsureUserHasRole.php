@@ -31,7 +31,11 @@ class EnsureUserHasRole
         //     if (auth()->user()->role == $role)
         //         return $next($request);
         // }
+
+
         foreach ($roles as $role) {
+            if ($role === "superadmin" && auth()->user()->isSuperadmin()) return $next($request);
+
             if ($request->user()->role === $role) {
                 return $next($request);
             }
