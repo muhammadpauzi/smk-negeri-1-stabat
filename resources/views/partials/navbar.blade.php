@@ -54,7 +54,7 @@
             <div class="container-xl">
                 <ul class="navbar-nav">
 
-                    <li class="nav-item active">
+                    <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('dashboard') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -72,7 +72,7 @@
                     </li>
 
                     @if( auth()->user()->isSuperadmin() )
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('users.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -90,7 +90,7 @@
                     </li>
                     @endif
 
-                    <li class="nav-item">
+                    <li class="nav-item  {{ request()->routeIs('articles.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('articles.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -108,7 +108,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('categories.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -124,7 +124,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('majors.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('majors.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -140,7 +140,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('teachers.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('teachers.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -162,7 +162,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('students.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('students.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -179,7 +179,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item {{ request()->routeIs('slides.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('slides.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

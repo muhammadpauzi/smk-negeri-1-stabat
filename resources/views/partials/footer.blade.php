@@ -1,5 +1,5 @@
-<footer class="footer footer-transparent d-print-none mt-5">
-    <div class="container-xl">
+<footer class="footer footer-transparent d-print-none">
+    <div class="container-xl mt-5">
         <div class="row text-center align-items-center">
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                 <ul class="list-inline list-inline-dots mb-0">
