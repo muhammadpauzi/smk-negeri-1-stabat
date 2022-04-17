@@ -83,7 +83,7 @@
                                     {{ $category->description ?? 'No description' }}
                                 </td>
                                 <td>
-                                    {{ $category->created_at?->format('d M Y H:i') }}
+                                    {{ $category->created_at?->format('d M Y H:i') ?? '-' }}
                                 </td>
                                 <td>
                                     {{ $category->updated_at == $category->created_at ? 'Not updated yet' : $category->updated_at->format('d M Y H:i') }}

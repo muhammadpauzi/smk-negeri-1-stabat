@@ -89,7 +89,7 @@
                                     <div class="d-flex py-1 align-items-center">
                                         <img class="avatar me-2" src="{{ asset('storage/' . $article->image) }}"></img>
                                         <div class="flex-fill">
-                                            <a href="{{ route('articles.show', ['article' => $article->slug ] ) }}" class="text-reset" tabindex="-1">{{ $article->title }}</a>
+                                            <a href="{{ route('articles.show', ['article' => $article->slug ] ) }}" class="text-reset" tabindex="-1">{{ Str::words($article->title, 5, '...') }}</a>
                                         </div>
                                     </div>
                                 </td>

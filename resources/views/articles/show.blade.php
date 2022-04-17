@@ -107,8 +107,6 @@
 
 						</div>
 
-						<div class="dropdown-divider mb-3"></div>
-
 					</div>
 				</div>
 

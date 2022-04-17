@@ -77,10 +77,13 @@
 							<small class="text-uppercase text-muted fw-bold d-block mb-2">
 								URL/Link
 							</small>
-							<a class="d-block">{{ $slide->url ?? 'No URL' }}</a>
+							@if( $slide->url )
+							<a href="{{ $slide->url }}" class="d-block">{{ $slide->url }}</a>
+							@else
+							<p class="d-block">No URL</p>
+							@endif
 						</div>
 
-						<div class="dropdown-divider mb-3"></div>
 					</div>
 				</div>
 

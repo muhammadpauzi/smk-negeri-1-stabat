@@ -125,7 +125,7 @@ class TeacherController extends Controller
         ]);
 
         if ($request->file('image')) {
-            if ($request->post('old-teacher-image')) Storage::delete($request->post('old-teacher-image'));
+            if ($request->post('old-teacher-image') && !strpos($teacher->image, "default")) Storage::delete($request->post('old-teacher-image'));
             $validatedData['image'] = $request->file('image')->store('teachers-images');
         }
 
@@ -142,6 +142,8 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        $teacher->delete();
+        if ($teacher->image && !strpos($teacher->image, "default")) Storage::delete($teacher->image);
         $teacher->delete();
         return redirect()->route('teachers.index')->with('success', 'Teacher has been deleted.');
     }

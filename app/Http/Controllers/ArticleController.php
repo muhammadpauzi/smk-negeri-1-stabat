@@ -146,7 +146,7 @@ class ArticleController extends Controller
         $validatedData = $request->validate($rules);
 
         if ($request->file('image')) {
-            if ($request->post('old-article-image')) Storage::delete($request->post('old-article-image'));
+            if ($request->post('old-article-image') && !strpos($article->image, "default")) Storage::delete($request->post('old-article-image'));
             $validatedData['image'] = $request->file('image')->store('article-images');
         }
 
@@ -172,7 +172,7 @@ class ArticleController extends Controller
     {
         $this->authorize('delete', $article);
 
-        if ($article->image) Storage::delete($article->image);
+        if ($article->image && !strpos($article->image, "default")) Storage::delete($article->image);
         $article->delete();
         return redirect()->route('articles.index')->with('success', 'Article has been deleted.');
     }

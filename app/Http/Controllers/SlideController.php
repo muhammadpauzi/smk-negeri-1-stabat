@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SlideController extends Controller
 {
@@ -20,7 +21,7 @@ class SlideController extends Controller
         if ($searchKeyword) {
             $slides = $slides->where('title', 'LIKE', "%$searchKeyword%")
                 ->orWhere('subtitle', 'LIKE', "%$searchKeyword%")
-                ->orWhere('link', 'LIKE', "%$searchKeyword%");
+                ->orWhere('url', 'LIKE', "%$searchKeyword%");
         }
 
         return view('slides.index', [
@@ -86,9 +87,12 @@ class SlideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Slide $slide)
     {
-        //
+        return view('slides.edit', [
+            "title" => "Edit Slide",
+            "slide" => $slide
+        ]);
     }
 
     /**
@@ -98,9 +102,26 @@ class SlideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Slide $slide)
     {
-        //
+        $rules = [
+            'title' => 'required|max:256',
+            'subtitle'   => 'max:512',
+            'image' => 'image|file|max:1024',
+        ];
+
+        if ($request->url) $rules['url'] = 'url';
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if ($request->post('old-slide-image') && !strpos($slide->image, "default")) Storage::delete($request->post('old-slide-image'));
+            $validatedData['image'] = $request->file('image')->store('slide-images');
+        }
+
+        $slide->update($validatedData);
+
+        return redirect()->route('slides.index')->with('success', 'Slide has been updated.');
     }
 
     /**
@@ -109,8 +130,10 @@ class SlideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Slide $slide)
     {
-        //
+        if ($slide->image && !strpos($slide->image, "default")) Storage::delete($slide->image);
+        $slide->delete();
+        return redirect()->route('slides.index')->with('success', 'Slide has been deleted.');
     }
 }

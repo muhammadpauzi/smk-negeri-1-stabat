@@ -147,7 +147,7 @@
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
                                 <a href="{{ route('students.index') }}" class="btn btn-light">Cancel</a>
-                                <button type="submit" class="btn btn-primary">Edit Student</button>
+                                <button type="submit" class="btn btn-primary">Update Student</button>
                             </div>
                         </div>
                     </div>

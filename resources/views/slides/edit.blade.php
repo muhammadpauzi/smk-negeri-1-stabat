@@ -8,15 +8,15 @@
             <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Category
+                    Slide
                 </div>
                 <h2 class="page-title">
-                    Edit Category
+                    Edit Slide
                 </h2>
             </div>
         </div>
 
-        <form action="{{ route('categories.update', ['category' => $category->slug ]) }}" method="post">
+        <form action="{{ route('slides.update', ['slide' => $slide->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -24,38 +24,67 @@
                 <div class="col-md-6">
                     <div class="card mb-2">
                         <div class="card-header">
-                            <h4 class="card-title">Form Update Category</h4>
+                            <h4 class="card-title">Form Edit Slide</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="name">Name of category <span class="text-danger">*</span></label>
-                                        <input type="text" id="name" class="form-control" name="name" autocomplete="category-name" value="{{ old('name', $category->name) }}">
-                                        <input type="hidden" id="old-name" class="form-control" name="old-name" value="{{ old('name', $category->name) }}">
-                                        @error('name')
+                                        <label class="form-label" for="title">Title of slide <span class="text-danger">*</span></label>
+                                        <input type="text" id="title" class="form-control" name="title" autocomplete="slide-title" value="{{ old('title', $slide->title) }}">
+                                        @error('title')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Slug</label>
-                                        <div class="form-control-plaintext">{{ $category->slug }}</div>
-                                        <input type="hidden" name="slug" value="{{ $category->slug }}">
+                                        <label class="form-label" for="subtitle">Subtitle</label>
+                                        <textarea id="subtitle" class="form-control" name="subtitle" rows="6" placeholder="Subtitle of slide..">{{ old('subtitle', $slide->subtitle) }}</textarea>
+                                        @error('subtitle')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label" for="description">Description</label>
-                                        <textarea id="description" class="form-control" name="description" rows="6" placeholder="Description of category..">{{ old('description', $category->description) }}</textarea>
-                                        @error('description')
+                                        <label class="form-label" for="url">URL/Link</label>
+                                        <input type="text" id="url" class="form-control" name="url" placeholder="https://example.com/" autocomplete="slide-url" value="{{ old('url', $slide->url) }}">
+                                        @error('url')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <h4 class="card-title">Upload Slide Image</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <div class="form-label">Slide Image</div>
+
+                                        <input type="hidden" name="old-slide-image" value="{{ $slide->image }}">
+                                        @if($slide->image)
+                                        <img class="w-100 block rounded overflow-hidden mb-2" id="img-preview" src="{{ asset('storage/' . $slide->image) }}" alt="">
+                                        @endif
+
+                                        <input type="file" class="form-control mb-2" name="image" />
+                                        @error('image')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+
+                                        <small class="text-muted block">Choose file if you want to replace the previous image.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('categories.index') }}" class="btn btn-light">Cancel</a>
-                                <button type="submit" class="btn btn-primary">Update Category</button>
+                                <a href="{{ route('slides.index') }}" class="btn btn-light">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Update Slide</button>
                             </div>
                         </div>
                     </div>

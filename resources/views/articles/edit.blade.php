@@ -1,13 +1,6 @@
 @extends('layouts.app')
 
-@section('head')
-<link rel="stylesheet" href="{{ asset('ckeditor.css') }}">
-<style>
-    .ck-editor__editable_inline {
-        min-height: 400px;
-    }
-</style>
-@endsection
+@include('partials.ckeditor-style')
 
 @section('content')
 <div class="container-xl">
@@ -167,18 +160,6 @@
         </form>
     </div>
 </div>
-<script src="{{ asset('ckeditor5/ckeditor.js') }}"></script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .then(newEditor => {
-            newEditor.model.document.on('change:data', () => {
-                window.editor.textContent = `"${newEditor.getData()}"`;
-            });
 
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
+@include('partials.ckeditor-script')
 @endsection
