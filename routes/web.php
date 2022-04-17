@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/majors', MajorController::class)->except(['index', 'show']);
         Route::resource('/teachers', TeacherController::class)->except(['index', 'show']);
         Route::resource('/students', StudentController::class)->except(['index', 'show']);
+        Route::resource('/slides', SlideController::class)->except(['index', 'show']);
     });
 
     Route::middleware('role:superadmin')->group(function () {
@@ -47,6 +49,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
     Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+
+    Route::get('/slides', [SlideController::class, 'index'])->name('slides.index');
+    Route::get('/slides/{slide}', [SlideController::class, 'show'])->name('slides.show');
 
     // for public (editor, superadmin and all) to see major detail page
     Route::get('/majors', [MajorController::class, 'index'])->name('majors.index');
