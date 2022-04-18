@@ -84,7 +84,7 @@
                             @if( count($articles) > 0 )
                             @foreach($articles as $article)
                             <tr>
-                                <td><span class="text-muted">{{ $loop->iteration }}</span></td>
+                                <td><span class="text-muted">{{ ($articles->currentpage()-1) * $articles->perpage() + $loop->index + 1 }}</span></td>
                                 <td class="flex">
                                     <div class="d-flex py-1 align-items-center">
                                         <img class="avatar me-2" src="{{ asset('storage/' . $article->image) }}"></img>

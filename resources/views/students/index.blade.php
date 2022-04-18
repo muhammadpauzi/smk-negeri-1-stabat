@@ -79,7 +79,7 @@
                             @if( count($students) > 0 )
                             @foreach($students as $student)
                             <tr>
-                                <td><span class="text-muted">{{ $loop->iteration }}</span></td>
+                                <td><span class="text-muted">{{ ($students->currentpage()-1) * $students->perpage() + $loop->index + 1 }}</span></td>
                                 <td>
                                     {{ $student->nisn }}
                                 </td>

@@ -78,7 +78,7 @@
                             @if( count($teachers) > 0 )
                             @foreach($teachers as $teacher)
                             <tr>
-                                <td><span class="text-muted">{{ $loop->iteration }}</span></td>
+                                <td><span class="text-muted">{{ ($teachers->currentpage()-1) * $teachers->perpage() + $loop->index + 1 }}</span></td>
                                 <td>
                                     {{ $teacher->name }}
                                 </td>

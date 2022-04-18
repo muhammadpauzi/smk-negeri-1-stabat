@@ -73,7 +73,7 @@
                             @if( count($slides) > 0 )
                             @foreach($slides as $slide)
                             <tr>
-                                <td><span class="text-muted">{{ $loop->iteration }}</span></td>
+                                <td><span class="text-muted">{{ ($slides->currentpage()-1) * $slides->perpage() + $loop->index + 1 }}</span></td>
                                 <td class="flex">
                                     <div class="d-flex py-1 align-items-center">
                                         <img class="avatar me-2" src="{{ asset('storage/' . $slide->image) }}"></img>

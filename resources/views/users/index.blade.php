@@ -71,7 +71,7 @@
                             @if( count($users) > 0 )
                             @foreach($users as $user)
                             <tr>
-                                <td><span class="text-muted">{{ $loop->iteration }}</span></td>
+                                <td><span class="text-muted">{{ ($users->currentpage()-1) * $users->perpage() + $loop->index + 1 }}</span></td>
                                 <td>
                                     {{ $user->name  }}
                                 </td>

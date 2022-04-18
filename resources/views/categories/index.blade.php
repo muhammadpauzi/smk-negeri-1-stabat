@@ -75,7 +75,7 @@
                             @if( count($categories) > 0 )
                             @foreach($categories as $category)
                             <tr>
-                                <td><span class="text-muted">{{ $loop->iteration }}</span></td>
+                                <td><span class="text-muted">{{ ($categories->currentpage()-1) * $categories->perpage() + $loop->index + 1 }}</span></td>
                                 <td>
                                     {{ $category->name }}
                                 </td>

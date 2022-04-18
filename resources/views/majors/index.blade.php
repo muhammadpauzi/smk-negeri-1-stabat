@@ -74,7 +74,7 @@
                             @if( count($majors) > 0 )
                             @foreach($majors as $major)
                             <tr>
-                                <td><span class="text-muted">{{ $loop->iteration }}</span></td>
+                                <td><span class="text-muted">{{ ($majors->currentpage()-1) * $majors->perpage() + $loop->index + 1 }}</span></td>
                                 <td>
                                     <a href="{{ route('majors.show', ['major' => $major->slug]) }}" class="text-reset">{{ $major->name }}</a>
                                 </td>
