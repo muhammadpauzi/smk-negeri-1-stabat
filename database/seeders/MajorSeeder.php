@@ -15,6 +15,7 @@ class MajorSeeder extends Seeder
      */
     public function run()
     {
+        Major::truncate();
         Major::insertOrIgnore([
             [
                 "name" => "Teknik Komputer & Jaringan",

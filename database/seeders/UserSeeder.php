@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        User::truncate();
         User::insertOrIgnore([
             [
                 "name"  => "Super Admin",
