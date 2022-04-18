@@ -19,6 +19,7 @@
 
     <div class="page-body">
         <div class="row row-deck row-cards mb-3">
+
             <div class="col-sm-6 col-lg-3">
                 <div class="card">
                     <div class="card-body">
@@ -43,13 +44,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-6 col-lg-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="subheader">Categories</div>
-                            @if( auth()->user()->isSuperadminOrAdmin() )
                             <div class="ms-auto lh-1">
+                                @if( auth()->user()->isSuperadminOrAdmin() )
                                 <a href="{{ route('articles.create') }}">Create Category</a>
                                 @else
                                 <a href="{{ route('articles.index') }}">Categories</a>

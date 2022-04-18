@@ -17,7 +17,12 @@ class ArticleController extends Controller
     public function index()
     {
         // $articles = Article::query()->with(['category', 'author'])->latest()->get();
-        $articles = auth()->user()->articles()->with(['category', 'author']);
+        $loggedInUser = auth()->user();
+        if ($loggedInUser->isSuperadminOrAdmin() && request()->get('all')) {
+            $articles = Article::query()->with(['category', 'author']);
+        } else {
+            $articles = $loggedInUser->articles()->with(['category', 'author']);
+        }
         $searchKeyword = request('search');
 
         if ($searchKeyword) {
@@ -91,7 +96,7 @@ class ArticleController extends Controller
     {
         $loggedInUser = auth()->user();
         if (!$loggedInUser->isSuperadminOrAdmin()) {
-            if (!$article->ownedBy($loggedInUser) || !$$article->is_published) {
+            if (!$article->ownedBy($loggedInUser) || !$article->is_published) {
                 // return abort(403, 'This article not published yet.');
                 return abort(404);
             }

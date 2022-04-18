@@ -43,8 +43,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/students', StudentController::class)->except(['index', 'show']);
         Route::resource('/slides', SlideController::class)->except(['index', 'show']);
 
-        // Route::get('/school-profile/edit', SchoolProfileController::class, 'edit')->name('school-profile.edit');
-        // Route::put('/school-profile/edit', SchoolProfileController::class, 'update')->name('school-profile.update');
+        Route::get('/school-profile/edit', [SchoolProfileController::class, 'edit'])->name('school-profile.edit');
+        Route::put('/school-profile/edit', [SchoolProfileController::class, 'update'])->name('school-profile.update');
     });
 
     Route::middleware('role:superadmin')->group(function () {
