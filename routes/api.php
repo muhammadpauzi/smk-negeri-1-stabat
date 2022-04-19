@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\MajorController;
+use App\Http\Controllers\Api\SchoolProfileController;
+use App\Http\Controllers\Api\SlideController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +27,8 @@ Route::get('/articles/{article}', [ArticleController::class, 'show']);
 
 Route::get('/majors', [MajorController::class, 'index']);
 Route::get('/majors/{major}', [MajorController::class, 'show']);
+
+Route::get('/slides', [SlideController::class, 'index']);
+Route::get('/slides/{slide}', [SlideController::class, 'show']);
+
+Route::get('/school-profile', [SchoolProfileController::class, 'index']);

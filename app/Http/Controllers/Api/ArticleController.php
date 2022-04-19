@@ -18,9 +18,13 @@ class ArticleController extends Controller
                 ->orWhere('body', 'LIKE', "%$searchKeyword%");
         }
 
+        $paginator = $articles->latest()->paginate(20);
+        $data = $paginator->makeHidden(['body']);
+        $paginator->data = $data;
+
         return response()->json([
             "success" => true,
-            "data" => $articles->latest()->paginate(20)->makeHidden('body')
+            "data" => $paginator
         ]);
     }
 

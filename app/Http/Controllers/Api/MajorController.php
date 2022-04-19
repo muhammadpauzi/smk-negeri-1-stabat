@@ -19,9 +19,13 @@ class MajorController extends Controller
                 ->orWhere('description', 'LIKE', "%$searchKeyword%");
         }
 
+        $paginator = $majors->latest()->paginate(20);
+        $data = $paginator->makeHidden(['body']);
+        $paginator->data = $data;
+
         return response()->json([
             "success" => true,
-            "data" => $majors->latest()->paginate(20)->makeHidden('body')
+            "data" => $paginator
         ]);
     }
 
