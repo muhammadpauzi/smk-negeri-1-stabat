@@ -8,11 +8,12 @@ use Illuminate\Http\Request;
 
 class SchoolProfileController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $schoolProfile = SchoolProfile::all()->first();
         return response()->json([
             "success"   => true,
             "data" => $schoolProfile
-        ])
+        ]);
     }
 }

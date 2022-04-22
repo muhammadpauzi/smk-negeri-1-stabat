@@ -9,7 +9,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::query()->with(['category', 'author']);
+        $articles = Article::query()->with(['category', 'author'])->where('is_published', '=', '1');
         $searchKeyword = request('search');
 
         if ($searchKeyword) {
@@ -30,6 +30,12 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
+        if (!$article->is_published)
+            return response()->json([
+                "success" => false,
+                "messgae" => "cannot access this article"
+            ], 403);
+
         return response()->json([
             "success" => true,
             "data" => $article->load(['category', 'author'])

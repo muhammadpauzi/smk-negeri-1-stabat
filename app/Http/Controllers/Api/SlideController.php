@@ -12,26 +12,11 @@ class SlideController extends Controller
 {
     public function index()
     {
-        $slides = Slide::query()->latest();
-        $searchKeyword = request('search');
-
-        if ($searchKeyword) {
-            $slides = $slides->where('title', 'LIKE', "%$searchKeyword%")
-                ->orWhere('subtitle', 'LIKE', "%$searchKeyword%")
-                ->orWhere('url', 'LIKE', "%$searchKeyword%");
-        }
+        $slides = Slide::query()->latest()->get();
 
         return response()->json([
             "success" => true,
-            "data" => $slides->latest()->paginate(20)
-        ]);
-    }
-
-    public function show(Slide $slide)
-    {
-        return response()->json([
-            "success" => true,
-            "data" => $slide
+            "data" => $slides
         ]);
     }
 }

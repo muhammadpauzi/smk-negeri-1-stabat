@@ -29,6 +29,5 @@ Route::get('/majors', [MajorController::class, 'index']);
 Route::get('/majors/{major}', [MajorController::class, 'show']);
 
 Route::get('/slides', [SlideController::class, 'index']);
-Route::get('/slides/{slide}', [SlideController::class, 'show']);
 
 Route::get('/school-profile', [SchoolProfileController::class, 'index']);
