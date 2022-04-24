@@ -18,7 +18,7 @@
             @can('update', $profile)
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <a href="{{ route('school-profile.edit') }}" class="btn btn-primary">
+                    <a href="{{ route('dashboard.school-profile.edit') }}" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
@@ -116,7 +116,7 @@
                 @can('update', $profile)
                 <div class="row">
                     <div class="w-100">
-                        <a class="w-100 btn btn-primary mb-2" href="{{ route('school-profile.edit') }}">
+                        <a class="w-100 btn btn-primary mb-2" href="{{ route('dashboard.school-profile.edit') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />

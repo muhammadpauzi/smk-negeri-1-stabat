@@ -66,7 +66,7 @@ class MajorController extends Controller
 
         Major::create($validatedData);
 
-        return redirect()->route("majors.index")->with('success', 'New major has been created.');
+        return redirect()->route("dashboard.majors.index")->with('success', 'New major has been created.');
     }
 
     /**
@@ -123,7 +123,7 @@ class MajorController extends Controller
 
         $major->update($validatedData);
 
-        return redirect()->route('majors.index')->with('success', 'Major has been updated.');
+        return redirect()->route('dashboard.majors.index')->with('success', 'Major has been updated.');
     }
 
     /**
@@ -135,6 +135,6 @@ class MajorController extends Controller
     public function destroy(Major $major)
     {
         $major->delete();
-        return redirect()->route('majors.index')->with('success', 'Major has been deleted.');
+        return redirect()->route('dashboard.majors.index')->with('success', 'Major has been deleted.');
     }
 }

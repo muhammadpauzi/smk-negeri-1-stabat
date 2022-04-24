@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('students.store') }}" method="post">
+        <form action="{{ route('dashboard.students.store') }}" method="post">
             @csrf
 
             <div class="row">
@@ -145,7 +145,7 @@
 
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('students.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.students.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Create Student</button>
                             </div>
                         </div>

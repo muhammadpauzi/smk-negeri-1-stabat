@@ -18,7 +18,7 @@
             @if( auth()->user()->isSuperadminOrAdmin() )
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <a href="{{ route('teachers.create') }}" class="btn btn-primary">
+                    <a href="{{ route('dashboard.teachers.create') }}" class="btn btn-primary">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="text-muted">
-                            <form method="GET" action="{{ route('teachers.index') }}" class="input-icon">
+                            <form method="GET" action="{{ route('dashboard.teachers.index') }}" class="input-icon">
                                 <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
                                 <span class="input-icon-addon">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/search -->
@@ -105,14 +105,14 @@
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <form action="{{ route('teachers.destroy', ['teacher' => $teacher->id]) }}" method="post">
+                                            <form action="{{ route('dashboard.teachers.destroy', ['teacher' => $teacher->id]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('Are you sure to delete this teacher?')" class="dropdown-item btn-danger">
                                                     Delete
                                                 </button>
                                             </form>
-                                            <a class="dropdown-item" href="{{ route('teachers.edit', ['teacher' => $teacher->id]) }}">
+                                            <a class="dropdown-item" href="{{ route('dashboard.teachers.edit', ['teacher' => $teacher->id]) }}">
                                                 Edit
                                             </a>
                                         </div>
@@ -124,7 +124,7 @@
                             @else
                             <tr>
                                 <td colspan="8">
-                                    <p class="text-danger py-3 m-0 text-center">Teachers doesn't exists, <a href="{{ route('teachers.create') }}">Create teacher now!</a></p>
+                                    <p class="text-danger py-3 m-0 text-center">Teachers doesn't exists, <a href="{{ route('dashboard.teachers.create') }}">Create teacher now!</a></p>
                                 </td>
                             </tr>
                             @endif

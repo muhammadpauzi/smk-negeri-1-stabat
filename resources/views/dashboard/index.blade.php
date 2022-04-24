@@ -26,7 +26,7 @@
                         <div class="d-flex align-items-center">
                             <div class="subheader">Articles</div>
                             <div class="ms-auto lh-1">
-                                <a href="{{ route('articles.create') }}">Create Article</a>
+                                <a href="{{ route('dashboard.articles.create') }}">Create Article</a>
                             </div>
                         </div>
                         <div class="h1 mb-3">{{ $articles->count() }} {{ Str::plural('Article', $articles->count()) }}</div>
@@ -52,9 +52,9 @@
                             <div class="subheader">Categories</div>
                             <div class="ms-auto lh-1">
                                 @if( auth()->user()->isSuperadminOrAdmin() )
-                                <a href="{{ route('articles.create') }}">Create Category</a>
+                                <a href="{{ route('dashboard.articles.create') }}">Create Category</a>
                                 @else
-                                <a href="{{ route('articles.index') }}">Categories</a>
+                                <a href="{{ route('dashboard.articles.index') }}">Categories</a>
                                 @endif
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                         <div class="d-flex align-items-center">
                             <div class="subheader">Users</div>
                             <div class="ms-auto lh-1">
-                                <a href="{{ route('users.create') }}">Create User</a>
+                                <a href="{{ route('dashboard.users.create') }}">Create User</a>
                             </div>
                         </div>
                         <div class="h1 mb-3">{{ $users->count() }} {{ Str::plural('User', $users->count()) }}</div>
@@ -104,9 +104,9 @@
 
                             <div class="ms-auto lh-1">
                                 @if( auth()->user()->isSuperadminOrAdmin() )
-                                <a href="{{ route('slides.create') }}">Create Slide</a>
+                                <a href="{{ route('dashboard.slides.create') }}">Create Slide</a>
                                 @else
-                                <a href="{{ route('slides.index') }}">Slides</a>
+                                <a href="{{ route('dashboard.slides.index') }}">Slides</a>
                                 @endif
                             </div>
                         </div>
@@ -125,9 +125,9 @@
 
                             <div class="ms-auto lh-1">
                                 @if( auth()->user()->isSuperadminOrAdmin() )
-                                <a href="{{ route('majors.create') }}">Create Major</a>
+                                <a href="{{ route('dashboard.majors.create') }}">Create Major</a>
                                 @else
-                                <a href="{{ route('majors.index') }}">Majors</a>
+                                <a href="{{ route('dashboard.majors.index') }}">Majors</a>
                                 @endif
                             </div>
                         </div>
@@ -146,9 +146,9 @@
 
                             <div class="ms-auto lh-1">
                                 @if( auth()->user()->isSuperadminOrAdmin() )
-                                <a href="{{ route('students.create') }}">Create Student</a>
+                                <a href="{{ route('dashboard.students.create') }}">Create Student</a>
                                 @else
-                                <a href="{{ route('students.index') }}">Students</a>
+                                <a href="{{ route('dashboard.students.index') }}">Students</a>
                                 @endif
                             </div>
                         </div>
@@ -167,9 +167,9 @@
 
                             <div class="ms-auto lh-1">
                                 @if( auth()->user()->isSuperadminOrAdmin() )
-                                <a href="{{ route('teachers.create') }}">Create Teacher</a>
+                                <a href="{{ route('dashboard.teachers.create') }}">Create Teacher</a>
                                 @else
-                                <a href="{{ route('teachers.index') }}">Teachers</a>
+                                <a href="{{ route('dashboard.teachers.index') }}">Teachers</a>
                                 @endif
                             </div>
                         </div>

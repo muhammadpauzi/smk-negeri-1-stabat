@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <form action="{{ route('majors.store') }}" method="post">
+        <form action="{{ route('dashboard.majors.store') }}" method="post">
             @csrf
 
             <div class="row">
@@ -110,7 +110,7 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('majors.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.majors.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Create Major</button>
                             </div>
                         </div>

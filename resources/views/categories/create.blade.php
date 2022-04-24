@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('categories.store') }}" method="post">
+        <form action="{{ route('dashboard.categories.store') }}" method="post">
             @csrf
 
             <div class="row">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('categories.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.categories.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Create Category</button>
                             </div>
                         </div>

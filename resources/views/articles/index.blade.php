@@ -46,7 +46,7 @@
                         <h3 class="card-title">List Articles</h3>
                     </div>
                     <div class="col-md-6">
-                        <form method="GET" action="{{ route('articles.index') }}" class="input-icon">
+                        <form method="GET" action="{{ route('dashboard.articles.index') }}" class="input-icon">
                             <div class="row">
                                 <div class="col-md-3">
                                     <select class="form-select" name="limit" id="limit">
@@ -96,7 +96,7 @@
                                     <div class="d-flex py-1 align-items-center">
                                         <img class="avatar me-2" src="{{ asset('storage/' . $article->image) }}"></img>
                                         <div class="flex-fill">
-                                            <a href="{{ route('articles.show', ['article' => $article->slug ] ) }}" class="text-reset" tabindex="-1">{{ Str::words($article->title, 5, '...') }}</a>
+                                            <a href="{{ route('dashboard.articles.show', ['article' => $article->slug ] ) }}" class="text-reset" tabindex="-1">{{ Str::words($article->title, 5, '...') }}</a>
                                         </div>
                                     </div>
                                 </td>
@@ -119,14 +119,14 @@
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                         <div class="dropdown-menu dropdown-menu-end">
 
-                                            <form action="{{ route('articles.destroy', ['article' => $article->slug]) }}" method="post">
+                                            <form action="{{ route('dashboard.articles.destroy', ['article' => $article->slug]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('Are you sure to delete this article?')" class="dropdown-item btn-danger">
                                                     Delete
                                                 </button>
                                             </form>
-                                            <a class="dropdown-item" href="{{ route('articles.edit', ['article' => $article->slug]) }}">
+                                            <a class="dropdown-item" href="{{ route('dashboard.articles.edit', ['article' => $article->slug]) }}">
                                                 Edit
                                             </a>
                                         </div>
@@ -137,7 +137,7 @@
                             @else
                             <tr>
                                 <td colspan="5">
-                                    <p class="text-danger py-3 m-0 text-center">Article doesn't exists, <a href="{{ route('articles.create') }}">Create article now!</a></p>
+                                    <p class="text-danger py-3 m-0 text-center">Article doesn't exists, <a href="{{ route('dashboard.articles.create') }}">Create article now!</a></p>
                                 </td>
                             </tr>
                             @endif

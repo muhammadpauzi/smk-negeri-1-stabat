@@ -18,7 +18,7 @@
             @if( auth()->user()->isSuperadminOrAdmin() )
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <a href="{{ route('slides.create') }}" class="btn btn-primary">
+                    <a href="{{ route('dashboard.slides.create') }}" class="btn btn-primary">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="text-muted">
-                            <form method="GET" action="{{ route('slides.index') }}" class="input-icon">
+                            <form method="GET" action="{{ route('dashboard.slides.index') }}" class="input-icon">
                                 <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
                                 <span class="input-icon-addon">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/search -->
@@ -78,7 +78,7 @@
                                     <div class="d-flex py-1 align-items-center">
                                         <img class="avatar me-2" src="{{ asset('storage/' . $slide->image) }}"></img>
                                         <div class="flex-fill">
-                                            <a href="{{ route('slides.show', ['slide' => $slide->id ] ) }}" class="text-reset" tabindex="-1">{{ Str::words($slide->title, 5, '...') }}</a>
+                                            <a href="{{ route('dashboard.slides.show', ['slide' => $slide->id ] ) }}" class="text-reset" tabindex="-1">{{ Str::words($slide->title, 5, '...') }}</a>
                                         </div>
                                     </div>
                                 </td>
@@ -90,14 +90,14 @@
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <form action="{{ route('slides.destroy', ['slide' => $slide->id]) }}" method="post">
+                                            <form action="{{ route('dashboard.slides.destroy', ['slide' => $slide->id]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('Are you sure to delete this slide?')" class="dropdown-item btn-danger">
                                                     Delete
                                                 </button>
                                             </form>
-                                            <a class="dropdown-item" href="{{ route('slides.edit', ['slide' => $slide->id]) }}">
+                                            <a class="dropdown-item" href="{{ route('dashboard.slides.edit', ['slide' => $slide->id]) }}">
                                                 Edit
                                             </a>
                                         </div>
@@ -109,7 +109,7 @@
                             @else
                             <tr>
                                 <td colspan="5">
-                                    <p class="text-danger py-3 m-0 text-center">Slides doesn't exists, <a href="{{ route('slides.create') }}">Create slide now!</a></p>
+                                    <p class="text-danger py-3 m-0 text-center">Slides doesn't exists, <a href="{{ route('dashboard.slides.create') }}">Create slide now!</a></p>
                                 </td>
                             </tr>
                             @endif

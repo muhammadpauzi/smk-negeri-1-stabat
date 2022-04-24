@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('categories.update', ['category' => $category->slug ]) }}" method="post">
+        <form action="{{ route('dashboard.categories.update', ['category' => $category->slug ]) }}" method="post">
             @csrf
             @method('PUT')
 
@@ -54,7 +54,7 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('categories.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.categories.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Update Category</button>
                             </div>
                         </div>

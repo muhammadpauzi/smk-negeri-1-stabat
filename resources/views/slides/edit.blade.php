@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('slides.update', ['slide' => $slide->id]) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.slides.update', ['slide' => $slide->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -83,7 +83,7 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('slides.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.slides.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Update Slide</button>
                             </div>
                         </div>

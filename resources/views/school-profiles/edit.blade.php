@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('school-profile.update') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.school-profile.update') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -157,7 +157,7 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('school-profile.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.school-profile.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Update School Profile</button>
                             </div>
                         </div>

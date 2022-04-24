@@ -17,7 +17,7 @@
 			<!-- Page title actions -->
 			<div class="col-auto ms-auto d-print-none">
 				<div class="btn-list">
-					<a href="{{ route('majors.create') }}" class="btn btn-primary">
+					<a href="{{ route('dashboard.majors.create') }}" class="btn btn-primary">
 						<!-- Download SVG icon from http://tabler-icons.io/i/plus -->
 						<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -57,7 +57,7 @@
 							@else
 							<p>No image</p>
 							@endif
-							<a href="{{ route('teachers.index', ['techer' => $major->head->name]) }}" class="d-block text-reset">{{ $major->head->name }}</a>
+							<a href="{{ route('dashboard.teachers.index', ['techer' => $major->head->name]) }}" class="d-block text-reset">{{ $major->head->name }}</a>
 						</div>
 
 						<div class="dropdown-divider mb-3"></div>
@@ -84,7 +84,7 @@
 				<div class="row">
 					<div class="w-100">
 						@can('update', $major)
-						<a class="w-100 btn btn-primary mb-2" href="{{ route('majors.edit', ['major' => $major->slug]) }}">
+						<a class="w-100 btn btn-primary mb-2" href="{{ route('dashboard.majors.edit', ['major' => $major->slug]) }}">
 							<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 								<path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
@@ -96,7 +96,7 @@
 						@endcan
 
 						@can('delete', $major)
-						<form action="{{ route('majors.destroy', ['major' => $major->slug]) }}" method="post" class="w-100 block">
+						<form action="{{ route('dashboard.majors.destroy', ['major' => $major->slug]) }}" method="post" class="w-100 block">
 							@csrf
 							@method('DELETE')
 							<button type="submit" onclick="return confirm('Are you sure to delete this major?')" class="btn btn-danger w-100">

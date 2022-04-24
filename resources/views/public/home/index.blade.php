@@ -21,7 +21,7 @@
                                 <small class="d-inline-block text-uppercase text-muted fw-bold fs-3">{{ $article->views }} {{ Str::plural('view', $article->views) }}</small>
                             </div>
                             <h3 class="card-title fs-2 mb-1">
-                                <a href="#" class="d-block py-3">{{ $article->title }}</a>
+                                <a href="{{ route('articles.show', ['article' => $article->slug]) }}" class="d-block py-3">{{ $article->title }}</a>
                             </h3>
                             <p class="text-muted fs-3 mb-3 d-block">{{ $article->description }}</p>
 

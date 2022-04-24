@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <form action="{{ route('articles.update', ['article' => $article->slug ]) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.articles.update', ['article' => $article->slug ]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -150,7 +150,7 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('articles.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.articles.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Update Article</button>
                             </div>
                         </div>

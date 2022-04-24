@@ -74,7 +74,7 @@ class StudentController extends Controller
 
         Student::create($validatedData);
 
-        return redirect()->route("students.index")->with('success', 'New student has been created.');
+        return redirect()->route("dashboard.students.index")->with('success', 'New student has been created.');
     }
 
     /**
@@ -118,7 +118,7 @@ class StudentController extends Controller
 
         $student->update($validatedData);
 
-        return redirect()->route('students.index')->with('success', 'Student has been updated.');
+        return redirect()->route('dashboard.students.index')->with('success', 'Student has been updated.');
     }
 
     /**
@@ -130,6 +130,6 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
-        return redirect()->route('students.index')->with('success', 'Student has been deleted.');
+        return redirect()->route('dashboard.students.index')->with('success', 'Student has been deleted.');
     }
 }

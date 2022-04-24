@@ -64,7 +64,7 @@ class SlideController extends Controller
 
         Slide::create($validatedData);
 
-        return redirect()->route("slides.index")->with('success', 'New slide has been created.');
+        return redirect()->route("dashboard.slides.index")->with('success', 'New slide has been created.');
     }
 
     /**
@@ -121,7 +121,7 @@ class SlideController extends Controller
 
         $slide->update($validatedData);
 
-        return redirect()->route('slides.index')->with('success', 'Slide has been updated.');
+        return redirect()->route('dashboard.slides.index')->with('success', 'Slide has been updated.');
     }
 
     /**
@@ -134,6 +134,6 @@ class SlideController extends Controller
     {
         if ($slide->image && !strpos($slide->image, "default")) Storage::delete($slide->image);
         $slide->delete();
-        return redirect()->route('slides.index')->with('success', 'Slide has been deleted.');
+        return redirect()->route('dashboard.slides.index')->with('success', 'Slide has been deleted.');
     }
 }

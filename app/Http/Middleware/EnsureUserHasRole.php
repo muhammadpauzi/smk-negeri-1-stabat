@@ -42,6 +42,6 @@ class EnsureUserHasRole
         }
 
         // return abort(403);
-        return redirect()->route('dashboard')->with('errorMessage', 'You don\'t have permission to access the page');
+        return redirect()->route('dashboard.index')->with('errorMessage', 'You don\'t have permission to access the page');
     }
 }

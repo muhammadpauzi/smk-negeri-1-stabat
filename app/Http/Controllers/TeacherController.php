@@ -82,7 +82,7 @@ class TeacherController extends Controller
 
         Teacher::create($validatedData);
 
-        return redirect()->route("teachers.index")->with('success', 'New teacher has been created.');
+        return redirect()->route("dashboard.teachers.index")->with('success', 'New teacher has been created.');
     }
 
     /**
@@ -131,7 +131,7 @@ class TeacherController extends Controller
 
         $teacher->update($validatedData);
 
-        return redirect()->route('teachers.index')->with('success', 'Teacher has been updated.');
+        return redirect()->route('dashboard.teachers.index')->with('success', 'Teacher has been updated.');
     }
 
     /**
@@ -145,6 +145,6 @@ class TeacherController extends Controller
         $teacher->delete();
         if ($teacher->image && !strpos($teacher->image, "default")) Storage::delete($teacher->image);
         $teacher->delete();
-        return redirect()->route('teachers.index')->with('success', 'Teacher has been deleted.');
+        return redirect()->route('dashboard.teachers.index')->with('success', 'Teacher has been deleted.');
     }
 }

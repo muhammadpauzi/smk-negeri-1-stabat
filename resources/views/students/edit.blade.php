@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('students.update', ['student' => $student->id] ) }}" method="post">
+        <form action="{{ route('dashboard.students.update', ['student' => $student->id] ) }}" method="post">
             @csrf
             @method('PUT')
 
@@ -146,7 +146,7 @@
 
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('students.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.students.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Update Student</button>
                             </div>
                         </div>

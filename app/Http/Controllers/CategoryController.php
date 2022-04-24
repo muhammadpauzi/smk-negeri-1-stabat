@@ -62,7 +62,7 @@ class CategoryController extends Controller
 
         Category::create($validatedData);
 
-        return redirect()->route("categories.index")->with('success', 'New category has been created.');
+        return redirect()->route("dashboard.categories.index")->with('success', 'New category has been created.');
     }
 
     /**
@@ -106,7 +106,7 @@ class CategoryController extends Controller
 
         $category->update($validatedData);
 
-        return redirect()->route('categories.index')->with('success', 'Category has been updated.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'Category has been updated.');
     }
 
     /**
@@ -118,6 +118,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Category has been deleted.');
+        return redirect()->route('dashboard.categories.index')->with('success', 'Category has been deleted.');
     }
 }

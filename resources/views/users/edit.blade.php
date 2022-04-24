@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('users.update', ['user' => $user->id] ) }}" method="post">
+        <form action="{{ route('dashboard.users.update', ['user' => $user->id] ) }}" method="post">
             @csrf
             @method('PUT')
 
@@ -78,7 +78,7 @@
                         </div>
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('users.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.users.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Update User</button>
                             </div>
                         </div>

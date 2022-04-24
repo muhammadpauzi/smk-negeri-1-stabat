@@ -54,8 +54,8 @@
             <div class="container-xl">
                 <ul class="navbar-nav">
 
-                    <li class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('dashboard') }}">
+                    <li class="nav-item {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -72,8 +72,8 @@
                     </li>
 
                     @if( auth()->user()->isSuperadmin() )
-                    <li class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('users.index') }}">
+                    <li class="nav-item {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.users.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -90,8 +90,8 @@
                     </li>
                     @endif
 
-                    <li class="nav-item  {{ request()->routeIs('articles.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('articles.index') }}">
+                    <li class="nav-item  {{ request()->routeIs('dashboard.articles.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.articles.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -108,8 +108,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('categories.index') }}">
+                    <li class="nav-item {{ request()->routeIs('dashboard.categories.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.categories.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -124,8 +124,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item {{ request()->routeIs('majors.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('majors.index') }}">
+                    <li class="nav-item {{ request()->routeIs('dashboard.majors.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.majors.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -140,8 +140,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item {{ request()->routeIs('teachers.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('teachers.index') }}">
+                    <li class="nav-item {{ request()->routeIs('dashboard.teachers.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.teachers.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -162,8 +162,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item {{ request()->routeIs('students.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('students.index') }}">
+                    <li class="nav-item {{ request()->routeIs('dashboard.students.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.students.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -179,8 +179,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item {{ request()->routeIs('slides.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('slides.index') }}">
+                    <li class="nav-item {{ request()->routeIs('dashboard.slides.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.slides.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -199,8 +199,8 @@
                         </a>
                     </li>
 
-                    <li class="nav-item {{ request()->routeIs('school-profile.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('school-profile.index') }}">
+                    <li class="nav-item {{ request()->routeIs('dashboard.school-profile.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.school-profile.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />

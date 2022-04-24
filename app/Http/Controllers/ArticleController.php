@@ -83,7 +83,7 @@ class ArticleController extends Controller
 
         Article::create($validatedData);
 
-        return redirect()->route("articles.index")->with('success', 'New article has been created.');
+        return redirect()->route("dashboard.articles.index")->with('success', 'New article has been created.');
     }
 
     /**
@@ -164,7 +164,7 @@ class ArticleController extends Controller
 
         $article->update($validatedData);
 
-        return redirect()->route('articles.index')->with('success', 'Article has been updated.');
+        return redirect()->route('dashboard..index')->with('success', 'Article has been updated.');
     }
 
     /**
@@ -179,6 +179,6 @@ class ArticleController extends Controller
 
         if ($article->image && !strpos($article->image, "default")) Storage::delete($article->image);
         $article->delete();
-        return redirect()->route('articles.index')->with('success', 'Article has been deleted.');
+        return redirect()->route('dashboard.articles.index')->with('success', 'Article has been deleted.');
     }
 }

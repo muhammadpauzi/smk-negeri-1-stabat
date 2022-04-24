@@ -75,6 +75,6 @@ class SchoolProfileController extends Controller
 
         $schoolProfile->update($validatedData);
 
-        return redirect()->route('school-profile.index')->with('success', 'School Profile has been updated.');
+        return redirect()->route('dashboard.school-profile.index')->with('success', 'School Profile has been updated.');
     }
 }

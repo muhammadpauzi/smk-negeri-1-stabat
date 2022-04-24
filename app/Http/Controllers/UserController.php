@@ -82,7 +82,7 @@ class UserController extends Controller
 
         User::create($validatedData);
 
-        return redirect()->route("users.index")->with('success', 'New user has been created.');
+        return redirect()->route("dashboard.users.index")->with('success', 'New user has been created.');
     }
 
     /**
@@ -139,7 +139,7 @@ class UserController extends Controller
 
         $user->update($validatedData);
 
-        return redirect()->route('users.index')->with('success', 'User has been updated.');
+        return redirect()->route('dashboard.users.index')->with('success', 'User has been updated.');
     }
 
     /**
@@ -153,6 +153,6 @@ class UserController extends Controller
         // prevent if superadmin delete his own user account
         if ($user->isSuperadmin()) return abort(403, "You can delete user with role Superadmin.");
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'User has been deleted.');
+        return redirect()->route('dashboard.users.index')->with('success', 'User has been deleted.');
     }
 }

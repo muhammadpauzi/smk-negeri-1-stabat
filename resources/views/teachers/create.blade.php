@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <form action="{{ route('teachers.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.teachers.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -134,7 +134,7 @@
 
                         <div class="card-footer flex justify-content-end align-items-center">
                             <div>
-                                <a href="{{ route('teachers.index') }}" class="btn btn-light">Cancel</a>
+                                <a href="{{ route('dashboard.teachers.index') }}" class="btn btn-light">Cancel</a>
                                 <button type="submit" class="btn btn-primary">Create Teacher</button>
                             </div>
                         </div>
