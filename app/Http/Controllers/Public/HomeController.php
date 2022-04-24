@@ -11,7 +11,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $articles = Article::query()->take(10)->with(['author', 'category'])->latest()->get();
+        $articles = Article::query()->where('is_published', '=', 1)->take(10)->with(['author', 'category'])->latest()->get();
+        // $articles = Article::query()->take(10)->with(['author', 'category'])->latest()->get();
         $schoolProfile = SchoolProfile::all()->first();
 
         return view('public.home.index', [

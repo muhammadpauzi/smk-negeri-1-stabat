@@ -25,7 +25,7 @@
                             </h3>
                             <p class="text-muted fs-3 mb-3 d-block">{{ $article->description }}</p>
 
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center w-100">
                                 <div class="rounded-circle me-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -34,8 +34,8 @@
                                     </svg>
                                 </div>
 
-                                <div>
-                                    <a href="" class="text-muted text-uppercase d-block fw-bold">{{ $article->author->name }}</a>
+                                <div class="w-100">
+                                    <a href="" class="d-block text-muted text-uppercase d-block fw-bold">{{ $article->author->name }}</a>
                                 </div>
                             </div>
                         </div>
