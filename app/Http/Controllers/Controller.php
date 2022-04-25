@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Major;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -26,5 +27,10 @@ class Controller extends BaseController
             }
         }
         return $slug;
+    }
+
+    public function majors()
+    {
+        return Major::all();
     }
 }

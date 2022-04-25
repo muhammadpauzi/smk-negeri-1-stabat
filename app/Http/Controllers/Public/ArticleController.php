@@ -23,7 +23,8 @@ class ArticleController extends Controller
         return view('public.articles.show', [
             "title" => "$article->title",
             "article" => $article,
-            "schoolProfile" => $schoolProfile
+            "schoolProfile" => $schoolProfile,
+            "majors" => $this->majors()
         ]);
     }
 }

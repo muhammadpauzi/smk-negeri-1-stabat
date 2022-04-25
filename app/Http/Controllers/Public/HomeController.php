@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Major;
 use App\Models\SchoolProfile;
 use App\Models\Slide;
 use App\Models\User;
@@ -47,6 +48,7 @@ class HomeController extends Controller
             "slides" => $slides,
             "category" => $category,
             "author" => $author,
+            "majors" => $this->majors()
         ]);
     }
 }

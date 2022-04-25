@@ -34,7 +34,7 @@
         <div class="col-lg-8">
             <div class="row">
 
-                <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center justify-content-between mb-0 mb-md-3">
                     <h2 class="fs-1">
                         @if($category)
                         All Articles in <span class="text-indigo-600">{{ $category->name }}</span>
@@ -47,8 +47,10 @@
 
                     <a class="d-block text-primary" href="{{ route('home.index') }}">Clear filters.</a>
                 </div>
+            </div>
 
-                <div class="col-md-6 mb-3 mb-md-0">
+            <div class="row mb-3">
+                <div class="col">
                     <form method="GET" action="{{ route('home.index') }}" class="input-icon">
                         <div class="text-muted">
                             <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
@@ -64,7 +66,6 @@
                     </form>
                 </div>
             </div>
-
             <div class="row">
                 @if( count($articles) > 0 )
                 @foreach($articles as $article)
