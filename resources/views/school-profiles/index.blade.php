@@ -33,8 +33,8 @@
         </div>
     </div>
 
-    <div class="row gap-1">
-        <div class="col-md-9">
+    <div class="row">
+        <div class="col-md-9 mb-2 mb-sm-0">
             <div class="card p-3">
                 <h2 class="d-block mb-3">Kepala Sekolah Image</h2>
                 <img class="rounded block mb-3" src="{{ asset('storage/' . $profile->kepala_sekolah_image) }}"></img>

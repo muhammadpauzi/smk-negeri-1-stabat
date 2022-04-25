@@ -10,3 +10,7 @@ body {
     object-fit: cover;
     display: block;
 }
+
+.carousel-title {
+    font-size: clamp(0.9rem, 0.4rem, 1.1rem);
+}

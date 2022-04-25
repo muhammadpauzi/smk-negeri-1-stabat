@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="w-100 p-0 m-0">
+<div class="w-100 p-0 m-0 mt-0 mt-md-2">
     <div id="carousel-controls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             @foreach($slides as $slide)
@@ -9,7 +9,7 @@
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                 <img class="d-block w-100 image-slide" alt="" src="{{ asset('storage/' . $slide->image) }}">
                 <div class="carousel-caption py-0 pt-2">
-                    <h5 style="text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 10px;">{{ $slide->title }}</h5>
+                    <h5 style="text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 10px;" class="carousel-title">{{ $slide->title }}</h5>
                     @if( $slide->subtitle )
                     <p class="d-none d-md-block">{{ $slide->subtitle }}</p>
                     @endif
@@ -45,7 +45,7 @@
                         @endif
                     </h2>
 
-                    <a class="d-block text-primary" href="{{ route('home.index') }}">Clear filters.</a>
+                    <a class="d-block text-primary" href="{{ route('home.index') }}">Clear filters</a>
                 </div>
             </div>
 
@@ -80,8 +80,8 @@
                                 <span>•</span>
                                 <small class="d-inline-block text-uppercase text-muted fw-normal fs-4">{{ $article->views }} {{ Str::plural('view', $article->views) }}</small>
                             </div>
-                            <h3 class="card-title fs-2 mb-1">
-                                <a href="{{ route('articles.show', ['article' => $article->slug]) }}" class="d-block py-3">{{ $article->title }}</a>
+                            <h3 class="card-title fs-2 m-0">
+                                <a href="{{ route('articles.show', ['article' => $article->slug]) }}" class="d-block pt-3 pb-2">{{ $article->title }}</a>
                             </h3>
                             <p class="text-muted fs-3 mb-3 d-block">{{ $article->description }}</p>
 

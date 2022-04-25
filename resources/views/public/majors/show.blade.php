@@ -42,6 +42,15 @@
 
                                 <div class="mb-3">
                                     <small class="text-uppercase text-muted fw-bold d-block mb-2">
+                                        Description
+                                    </small>
+                                    <p>{{ $major->description }}</p>
+                                </div>
+
+                                <div class="dropdown-divider mb-3"></div>
+
+                                <div class="mb-3">
+                                    <small class="text-uppercase text-muted fw-bold d-block mb-2">
                                         Created at
                                     </small>
                                     <p class="d-block">{{ $major->created_at?->format('d M Y H:i') }}</p>

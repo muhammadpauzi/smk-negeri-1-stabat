@@ -1,13 +1,16 @@
 <header class="navbar navbar-expand-md navbar-light d-print-none">
     <div class="container-xl py-2">
         <!-- logo -->
-        <div>
+        <div class="d-flex align-items-center">
             <img src="{{ asset('storage/' . $schoolProfile->logo) }}" class="bg-transparent avatar me-2" alt="SMK Negeri 1 Stabat Logo (Tut Wuri Handayani)">
-            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                <a href="{{ route('home.index') }}">
-                    SMKN 1 Stabat
-                </a>
-            </h1>
+            <div>
+                <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal p-0 pe-0 pe-md-3">
+                    <a href="{{ route('home.index') }}">
+                        SMKN 1 Stabat
+                    </a>
+                </h1>
+                <p class="d-none d-md-block fw-normal fs-5 m-0">{{ $schoolProfile->address }}</p>
+            </div>
         </div>
         <!-- end logo -->
 
@@ -65,7 +68,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown {{ request()->routeIs('majors.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -108,7 +111,7 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="{{ route('articles.show', ['article' => 'school-profile']) }}">
+                                    <a class="dropdown-item" href="">
                                         School Profile
                                     </a>
                                 </div>
