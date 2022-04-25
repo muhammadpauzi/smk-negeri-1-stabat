@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    {{ $slides->links() }}
+                    {{ $slides->onEachSide(5)->links() }}
                 </div>
             </div>
         </div>

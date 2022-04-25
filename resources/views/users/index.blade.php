@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    {{ $users->links() }}
+                    {{ $users->onEachSide(5)->links() }}
                 </div>
             </div>
         </div>

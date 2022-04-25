@@ -1,28 +1,30 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="row mt-0 mt-md-2">
-    <div class="col">
-        <div id="carousel-controls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @foreach($slides as $slide)
-                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                    <img class="d-block w-100 image-slide" alt="" src="{{ asset('storage/' . $slide->image) }}">
-                    <div class="carousel-caption py-0 pt-2">
-                        <h5 style="text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 10px;">{{ $slide->title }}</h5>
-                    </div>
+<div class="w-100 p-0 m-0">
+    <div id="carousel-controls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @foreach($slides as $slide)
+            <!-- gambar slide diperbolehkan tinggi, namun disarankan agar admin memasukan gambar dengan dimensi yang sesuai -->
+            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                <img class="d-block w-100 image-slide" alt="" src="{{ asset('storage/' . $slide->image) }}">
+                <div class="carousel-caption py-0 pt-2">
+                    <h5 style="text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 10px;">{{ $slide->title }}</h5>
+                    @if( $slide->subtitle )
+                    <p class="d-none d-md-block">{{ $slide->subtitle }}</p>
+                    @endif
                 </div>
-                @endforeach
             </div>
-            <a class="carousel-control-prev" href="#carousel-controls" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel-controls" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </a>
+            @endforeach
         </div>
+        <a class="carousel-control-prev" href="#carousel-controls" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-controls" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
     </div>
 </div>
 
@@ -30,16 +32,48 @@
     <div class="row py-4">
 
         <div class="col-lg-8">
-            <h2 class="fs-1 mb-3">Berita Terbaru</h2>
+            <div class="row">
+
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h2 class="fs-1">
+                        @if($category)
+                        All Articles in <span class="text-indigo-600">{{ $category->name }}</span>
+                        @elseif($author)
+                        All Articles by <span class="text-indigo-600">{{ $author->name }}</span>
+                        @else
+                        Berita Terbaru
+                        @endif
+                    </h2>
+
+                    <a class="d-block text-primary" href="{{ route('home.index') }}">Clear filters.</a>
+                </div>
+
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <form method="GET" action="{{ route('home.index') }}" class="input-icon">
+                        <div class="text-muted">
+                            <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
+                            <span class="input-icon-addon">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <circle cx="10" cy="10" r="7" />
+                                    <line x1="21" y1="21" x2="15" y2="15" />
+                                </svg>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
             <div class="row">
+                @if( count($articles) > 0 )
                 @foreach($articles as $article)
                 <div class="col-md-6">
                     <div class="card mb-3">
                         <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url({{ asset('storage/' . $article->image) }})"></div>
                         <div class="card-body pb-3">
                             <div class="d-flex align-items-center gap-2">
-                                <a href="#" class="d-inline-block text-uppercase text-primary fw-normal fs-4">{{ $article->category->name }}</a>
+                                <a href="{{ route('home.index', ['category' => $article->category->slug]) }}" class="d-inline-block text-uppercase text-primary fw-normal fs-4">{{ $article->category->name }}</a>
                                 <span>•</span>
                                 <small class="d-inline-block text-uppercase text-muted fw-normal fs-4">{{ $article->created_at->diffForHumans() }}</small>
                                 <span>•</span>
@@ -60,13 +94,22 @@
                                 </div>
 
                                 <div class="w-100">
-                                    <a href="" class="d-block text-muted text-uppercase d-block fw-bold">{{ $article->author->name }}</a>
+                                    <a href="{{ route('home.index', ['author' => $article->author->username]) }}" class="d-block text-muted text-uppercase d-block fw-bold">{{ $article->author->name }}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
+                @else
+                <p class="text-danger py-3 m-0 text-center">Article not found. <a href="{{ route('home.index', ['search' => '']) }}">See all articles.</a></p>
+                @endif
+            </div>
+
+            <div class="row py-2">
+                <div class="d-flex align-items-center justify-content-between">
+                    {{ $articles->onEachSide(5)->links() }}
+                </div>
             </div>
         </div>
 
