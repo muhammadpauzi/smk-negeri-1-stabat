@@ -7,6 +7,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\MajorController as PublicMajorController;
+use App\Http\Controllers\Public\SchoolProfileController as PublicSchoolProfileController;
 use App\Http\Controllers\SchoolProfileController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\StudentController;
@@ -22,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
     Route::get('/articles/{article}', [PublicArticleController::class, 'show'])->name('articles.show');
+    Route::get('/school-profile', [PublicSchoolProfileController::class, 'index'])->name('school-profile.index');
+    Route::get('/majors/{major}', [PublicMajorController::class, 'show'])->name('majors.show');
 });
 
 Route::middleware('auth')->group(function () {
