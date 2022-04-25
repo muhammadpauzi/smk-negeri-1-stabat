@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\MajorController as PublicMajorController;
@@ -43,6 +44,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('/teachers', TeacherController::class)->except(['index', 'show']);
             Route::resource('/students', StudentController::class)->except(['index', 'show']);
             Route::resource('/slides', SlideController::class)->except(['index', 'show']);
+            Route::resource('/menus', MenuController::class)->except(['index', 'show']);
 
             Route::get('/school-profile/edit', [SchoolProfileController::class, 'edit'])->name('school-profile.edit');
             Route::put('/school-profile/edit', [SchoolProfileController::class, 'update'])->name('school-profile.update');
@@ -53,6 +55,8 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::get('/school-profile', [SchoolProfileController::class, 'index'])->name('school-profile.index');
+
+        Route::get('/menus', [MenuController::class, 'index'])->name('menus.index');
 
         Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
         Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
