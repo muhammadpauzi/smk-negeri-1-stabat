@@ -66,6 +66,33 @@
                     </li>
 
                 </ul>
+                <!-- right side of second navbar -->
+                <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
+                    <div class="btn-list">
+                        @auth
+                        <a href="{{ route('dashboard.index') }}" class="btn btn-primary w-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="12" cy="13" r="2" />
+                                <line x1="13.45" y1="11.55" x2="15.5" y2="9.5" />
+                                <path d="M6.4 20a9 9 0 1 1 11.2 0z" />
+                            </svg>
+                            Dashboard
+                        </a>
+                        @else
+                        <a href="{{ route('signIn') }}" class="btn btn-primary w-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+                            </svg>
+                            Sign in
+                        </a>
+                        @endauth
+                    </div>
+                </div>
+                <!-- end right side of second navbar -->
+
             </div>
         </div>
     </div>

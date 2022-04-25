@@ -19,12 +19,12 @@
                 <div class="btn-list">
                     @if(auth()->user()->isSuperadminOrAdmin())
                     <span class="d-none d-sm-inline">
-                        <a href="{{ route('articles.index', ['all' => true]) }}" class="btn btn-white">
+                        <a href="{{ route('dashboard.articles.index', ['all' => true]) }}" class="btn btn-white">
                             All Articles
                         </a>
                     </span>
                     @endif
-                    <a href="{{ route('articles.create') }}" class="btn btn-primary">
+                    <a href="{{ route('dashboard.articles.create') }}" class="btn btn-primary">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-6">
                         <form method="GET" action="{{ route('dashboard.articles.index') }}" class="input-icon">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-3">
                                     <select class="form-select" name="limit" id="limit">
                                         <option selected value="10">10</option>
@@ -57,19 +57,17 @@
                                         <option value="All">All</option>
                                     </select>
                                 </div>
-                                <div class="col-md-9">
-                                    <div class="text-muted">
-                                        <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
-                                        <span class="input-icon-addon">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/search -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <circle cx="10" cy="10" r="7" />
-                                                <line x1="21" y1="21" x2="15" y2="15" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                </div>
+                                </div> -->
+                            <div class="text-muted">
+                                <input type="text" value="{{ request('search') }}" class="form-control w-100" placeholder="Search…" name="search">
+                                <span class="input-icon-addon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <circle cx="10" cy="10" r="7" />
+                                        <line x1="21" y1="21" x2="15" y2="15" />
+                                    </svg>
+                                </span>
                             </div>
                         </form>
                     </div>

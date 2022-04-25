@@ -33,14 +33,14 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row gap-1">
         <div class="col-md-9">
             <div class="card p-3">
                 <h2 class="d-block mb-3">Kepala Sekolah Image</h2>
                 <img class="rounded block mb-3" src="{{ asset('storage/' . $profile->kepala_sekolah_image) }}"></img>
 
                 <h2 class="d-block mb-3">Kata Sambutan</h2>
-                <div style="max-width: 80%;">
+                <div style="max-width: clamp(526px, 80%, 100%);">
                     {!! $profile->kata_sambutan !!}
                 </div>
             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\SchoolProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -16,6 +17,8 @@ class ArticleController extends Controller
             return abort(404);
         }
         $schoolProfile = SchoolProfile::all()->first();
+
+        $article->increment('views', 1);
 
         return view('public.articles.show', [
             "title" => "$article->title",

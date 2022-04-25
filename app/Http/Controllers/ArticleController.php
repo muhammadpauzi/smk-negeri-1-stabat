@@ -102,6 +102,8 @@ class ArticleController extends Controller
             }
         }
 
+        $article->increment('views', 1);
+
         return view('articles.show', [
             "title" => "$article->title",
             "article" => $article

@@ -1,0 +1,12 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Source Sans Pro",
+        "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+}
+
+.image-slide {
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+}

@@ -1,93 +1,45 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="p-2">
-    <div class="row py-4">
-        <div class="col-lg-8">
-            <div class="card mb-3">
-                <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url({{ asset('storage/' . $article->image) }})"></div>
+<div class="container px-0 px-md-3">
+    <div class="p-2">
+        <div class="row py-4">
+            <div class="col-lg-8">
+                <div class="card mb-3">
+                    <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url({{ asset('storage/' . $article->image) }})"></div>
 
-                <div class="card-body py-3 px-2">
-
-                    <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2 mb-4">
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-circle me-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <circle cx="8.5" cy="8.5" r="1" fill="currentColor" />
-                                    <path d="M4 7v3.859c0 .537 .213 1.052 .593 1.432l8.116 8.116a2.025 2.025 0 0 0 2.864 0l4.834 -4.834a2.025 2.025 0 0 0 0 -2.864l-8.117 -8.116a2.025 2.025 0 0 0 -1.431 -.593h-3.859a3 3 0 0 0 -3 3z" />
-                                </svg>
-                            </div>
-                            <a href="#" class="d-inline-block text-uppercase text-primary fw-bold fs-3">{{ $article->category->name }}</a>
+                    <div class="card-body py-3 px-2 px-md-3">
+                        <div class="d-none d-md-block">
+                            @include('partials.article-detail-info')
                         </div>
 
-                        <span class="d-none d-sm-inline-block">•</span>
+                        <h1 class="card-title mb-3 fw-bold" style="font-size: 1.5rem !important;">{{ $article->title }}</h1>
 
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-circle me-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-                                    <circle cx="18" cy="18" r="4" />
-                                    <path d="M15 3v4" />
-                                    <path d="M7 3v4" />
-                                    <path d="M3 11h16" />
-                                    <path d="M18 16.496v1.504l1 1" />
-                                </svg>
-                            </div>
-                            <small class="d-inline-block text-uppercase text-muted fw-bold fs-3">{{ $article->created_at->format('D, d M Y H:i') }}</small>
+                        <div class="dropdown-divider"></div>
+
+                        <div style="font-size: 1rem;">
+                            {!! $article->body !!}
                         </div>
 
-                        <span class="d-none d-md-block">•</span>
-
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-circle me-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <circle cx="12" cy="12" r="2" />
-                                    <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
-                                </svg>
-                            </div>
-                            <small class="d-inline-block text-uppercase text-muted fw-bold fs-3">{{ $article->views }} {{ Str::plural('view', $article->views) }}</small>
-                        </div>
-
-                        <span class="d-none d-md-block">•</span>
-
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-circle me-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
-                                    <line x1="13.5" y1="6.5" x2="17.5" y2="10.5" />
-                                </svg>
-                            </div>
-                            <a href="" class="d-inline-block text-uppercase text-primary fw-bold fs-3">{{ $article->author->name }}</a>
+                        <div class="d-block d-md-none">
+                            @include('partials.article-detail-info')
                         </div>
                     </div>
-
-                    <h1 class="card-title mb-3 fw-bold" style="font-size: 1.5rem !important;">{{ $article->title }}</h1>
-
-                    <div class="dropdown-divider"></div>
-
-                    <div style="font-size: 1rem;">
-                        {!! $article->body !!}
-                    </div>
-
                 </div>
             </div>
-        </div>
 
-        <!-- col-lg-4 karena ada gap di parent -->
-        <div class="col-lg-4">
-            <h2 class="fs-1 mb-3">Kata Sambutan</h2>
+            <!-- col-lg-4 karena ada gap di parent -->
+            <div class="col-lg-4">
+                <h2 class="fs-1 mb-3">Kata Sambutan</h2>
 
-            <div class="card card-sm w-full">
-                <img src="{{ asset('storage/' . $schoolProfile->kepala_sekolah_image) }}" class="card-img-top">
-                <div class="card-body text-center">
-                    <h3 class="fs-2">{{ $schoolProfile->kepala_sekolah }}</h3>
-                    <div class="text-muted mb-3">Kepala Sekolah SMK Negeri 1 Stabat</div>
+                <div class="card card-sm w-full">
+                    <img src="{{ asset('storage/' . $schoolProfile->kepala_sekolah_image) }}" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h3 class="fs-2">{{ $schoolProfile->kepala_sekolah }}</h3>
+                        <div class="text-muted mb-3">Kepala Sekolah SMK Negeri 1 Stabat</div>
 
-                    <div style="text-align: justify;" class="fs-3">{!! $schoolProfile->kata_sambutan !!}</div>
+                        <div style="text-align: justify;" class="fs-3">{!! $schoolProfile->kata_sambutan !!}</div>
+                    </div>
                 </div>
             </div>
         </div>
