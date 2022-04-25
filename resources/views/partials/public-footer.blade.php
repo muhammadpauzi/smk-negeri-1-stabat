@@ -1,14 +1,14 @@
 <footer class="footer footer-transparent d-print-none">
     <div class="container-xl mt-5">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 mb-3 mb-md-0">
                 <p class="m-0">
                     Copyright &copy; {{ date('Y') }}
                     <a href="{{ route('home.index') }}" class="link-primary">SMK Negeri 1 Stabat</a>.
                     All rights reserved.
                 </p>
             </div>
-            <div class="col-md-6 text-end justify-content-end align-items-center d-flex gap-2">
+            <div class="col-md-6 flex-column flex-md-row text-end justify-content-end align-items-start align-items-md-center d-flex gap-2">
                 <a href="mailto:{{ $schoolProfile->email }}" class="text-muted">
                     <span class="me-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

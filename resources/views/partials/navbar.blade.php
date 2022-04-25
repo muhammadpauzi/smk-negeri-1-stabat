@@ -60,7 +60,6 @@
         <div class="navbar navbar-light">
             <div class="container-xl">
                 <ul class="navbar-nav">
-
                     <li class="nav-item {{ request()->routeIs('home.*') ? 'active' : '' }}">
                         <a class="nav-link py-3 py-md-0" href="{{ route('home.index') }}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
