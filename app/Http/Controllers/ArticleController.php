@@ -96,7 +96,7 @@ class ArticleController extends Controller
     {
         $loggedInUser = auth()->user();
         if (!$loggedInUser->isSuperadminOrAdmin()) {
-            if (!$article->ownedBy($loggedInUser) || !$article->is_published) {
+            if (!$article->ownedBy($loggedInUser) && !$article->is_published) {
                 // return abort(403, 'This article not published yet.');
                 return abort(404);
             }

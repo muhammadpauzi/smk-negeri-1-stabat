@@ -63,7 +63,9 @@
                                 <th>Image & Title</th>
                                 <th>Menu</th>
                                 <th>Created at</th>
+                                @if(auth()->user()->isSuperadminOrAdmin())
                                 <th></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -87,6 +89,7 @@
                                 <td>
                                     {{ $page->created_at->format('d M Y H:i') }}
                                 </td>
+                                @if(auth()->user()->isSuperadminOrAdmin())
                                 <td class="text-start">
                                     <span class="dropdown">
                                         <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
@@ -105,6 +108,7 @@
                                         </div>
                                     </span>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                             @else

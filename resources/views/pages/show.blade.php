@@ -11,21 +11,23 @@
 					Overview
 				</div>
 				<h2 class="page-title">
-					Article
+					Page
 				</h2>
 			</div>
 			<!-- Page title actions -->
 			<div class="col-auto ms-auto d-print-none">
 				<div class="btn-list">
-					<a href="{{ route('dashboard.articles.create') }}" class="btn btn-primary">
+					@if(auth()->user()->isSuperadminOrAdmin())
+					<a href="{{ route('dashboard.pages.create') }}" class="btn btn-primary">
 						<!-- Download SVG icon from http://tabler-icons.io/i/plus -->
 						<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 							<line x1="12" y1="5" x2="12" y2="19" />
 							<line x1="5" y1="12" x2="19" y2="12" />
 						</svg>
-						Create New Article
+						Create New Page
 					</a>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -34,13 +36,15 @@
 	<div class="row">
 		<div class="col-md-9">
 			<div class="card p-2">
-				<img class="rounded" src="{{ asset('storage/' . $article->image) }}"></img>
+				@if($page->image)
+				<img class="rounded" src="{{ asset('storage/' . $page->image) }}"></img>
+				@endif
 				<div class="px-3 py-4">
-					<h1 class="display-6 fw-normal">{{ $article->title }}</h1>
+					<h1 class="display-6 fw-normal">{{ $page->title }}</h1>
 					<div class="dropdown-divider"></div>
 
 					<div class="mt-5">
-						{!! $article->body !!}
+						{!! $page->body !!}
 					</div>
 				</div>
 			</div>
@@ -53,7 +57,7 @@
 							<small class="text-uppercase text-muted fw-bold d-block mb-2">
 								Created at
 							</small>
-							<p class="d-block">{{ $article->created_at->format('d M Y H:i') }}</p>
+							<p class="d-block">{{ $page->created_at->format('d M Y H:i') }}</p>
 						</div>
 
 						<div class="dropdown-divider mb-3"></div>
@@ -62,49 +66,16 @@
 							<small class="text-uppercase text-muted fw-bold d-block mb-2">
 								Updated at
 							</small>
-							<p class="d-block">{{ $article->updated_at == $article->created_at ? 'Not updated yet' : $article->updated_at->format('d M Y H:i') }}</p>
+							<p class="d-block">{{ $page->updated_at == $page->created_at ? 'Not updated yet' : $page->updated_at->format('d M Y H:i') }}</p>
 						</div>
 
 						<div class="dropdown-divider mb-3"></div>
 
 						<div class="mb-3">
 							<small class="text-uppercase text-muted fw-bold d-block mb-2">
-								Written by
+								Menu
 							</small>
-							<p class="d-block">{{ $article->author->name }}</p>
-						</div>
-
-						<div class="dropdown-divider mb-3"></div>
-
-						<div class="mb-3">
-							<small class="text-uppercase text-muted fw-bold d-block mb-2">
-								Category
-							</small>
-							<p class="d-block">{{ $article->category ? $article->category->name : 'Category was deleted.' }}</p>
-						</div>
-
-						<div class="dropdown-divider mb-3"></div>
-
-						<div class="mb-3">
-							<small class="text-uppercase text-muted fw-bold d-block mb-2">
-								Publish Status
-							</small>
-							@if( $article->is_published )
-							<span class="badge bg-success me-1"></span> Published
-							@else
-							<span class="badge bg-danger me-1"></span>
-							Not published yet
-							@endif
-						</div>
-
-						<div class="dropdown-divider mb-3"></div>
-
-						<div class="mb-3">
-							<small class="text-uppercase text-muted fw-bold d-block mb-2">
-								View (s)
-							</small>
-							<p class="d-block">{{ $article->views }} {{ Str::plural( 'View',$article->views ) }}</p>
-
+							<p class="d-block">{{ $page->menu ? $page->menu->name : 'Menu was deleted.' }}</p>
 						</div>
 
 					</div>
@@ -112,8 +83,8 @@
 
 				<div class="row">
 					<div class="w-100">
-						@can('update', $article)
-						<a class="w-100 btn btn-primary mb-2" href="{{ route('dashboard.articles.edit', ['article' => $article->slug]) }}">
+						@can('update', $page)
+						<a class="w-100 btn btn-primary mb-2" href="{{ route('dashboard.pages.edit', ['page' => $page->slug]) }}">
 							<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 								<path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
@@ -124,11 +95,11 @@
 						</a>
 						@endcan
 
-						@can('delete', $article)
-						<form action="{{ route('dashboard.articles.destroy', ['article' => $article->slug]) }}" method="post" class="w-100 block">
+						@can('delete', $page)
+						<form action="{{ route('dashboard.pages.destroy', ['page' => $page->slug]) }}" method="post" class="w-100 block">
 							@csrf
 							@method('DELETE')
-							<button type="submit" onclick="return confirm('Are you sure to delete this article?')" class="btn btn-danger w-100">
+							<button type="submit" onclick="return confirm('Are you sure to delete this page?')" class="btn btn-danger w-100">
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 									<path d="M4 7h16" />
@@ -136,7 +107,7 @@
 									<path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
 									<path d="M10 12l4 4m0 -4l-4 4" />
 								</svg>
-								Delete this article
+								Delete this page
 							</button>
 						</form>
 						@endcan

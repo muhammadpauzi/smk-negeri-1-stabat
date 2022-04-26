@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Article;
+use App\Models\Page;
 use App\Models\SchoolProfile;
 use App\Models\Slide;
 use App\Policies\ArticlePolicy;
+use App\Policies\PagePolicy;
 use App\Policies\SchoolProfilePolicy;
 use App\Policies\SlidePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -23,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
         Major::class => MajorPolicy::class,
         SchoolProfile::class => SchoolProfilePolicy::class,
         Slide::class => SlidePolicy::class,
+        Page::class => PagePolicy::class,
     ];
 
     /**

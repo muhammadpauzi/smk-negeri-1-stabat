@@ -74,9 +74,12 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Page $page)
     {
-        //
+        return view('pages.show', [
+            "title" => "$page->title",
+            "page" => $page
+        ]);
     }
 
     /**
@@ -85,9 +88,8 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Page $page)
     {
-        //
     }
 
     /**
