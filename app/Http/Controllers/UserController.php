@@ -104,9 +104,13 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if ($user->isSuperadmin()) return abort(403, "You can edit user with role Superadmin.");
-
-        $roles = ['admin', 'editor'];
+        // if ($user->isSuperadmin()) return abort(403, "You can edit user with role Superadmin.");
+        $roles = [];
+        if ($user->isSuperadmin()) {
+            $roles = ['superadmin'];
+        } else {
+            $roles = ['admin', 'editor'];
+        }
         return view('users.edit', [
             "title" => "Edit User",
             "user" => $user,
@@ -123,19 +127,22 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if ($user->isSuperadmin()) return abort(403, "You can edit user with role Superadmin.");
+        // if ($user->isSuperadmin()) return abort(403, "You can edit user with role Superadmin.");
 
         $rules = [
             'name' => 'required|max:255',
             'username' => 'required|alpha_dash|max:256',
             'email' => 'required|email|max:256',
-            'role' => 'required|in:admin,editor',
+            'role' => 'required|in:superadmin,admin,editor',
         ];
 
         if ($user->username !== $request->username) $rules['username'] .= '|unique:users';
         if ($user->email !== $request->email) $rules['email'] .= '|unique:users';
 
         $validatedData = $request->validate($rules);
+
+        if ($user->isSuperadmin())
+            $validatedData['role'] = 'superadmin';
 
         $user->update($validatedData);
 
