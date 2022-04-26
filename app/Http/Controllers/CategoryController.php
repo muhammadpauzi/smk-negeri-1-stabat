@@ -117,6 +117,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if ($category->articles()->get()->isNotEmpty()) {
+            return redirect()->route('dashboard.categories.index')->with('errorMessage', 'Can\'t delete category, because there are articles that still use it.');
+        }
         $category->delete();
         return redirect()->route('dashboard.categories.index')->with('success', 'Category has been deleted.');
     }

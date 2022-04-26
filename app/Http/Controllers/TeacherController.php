@@ -142,6 +142,9 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        if ($teacher->majors()->get()->isNotEmpty()) {
+            return redirect()->route('dashboard.teachers.index')->with('errorMessage', 'Can\'t delete teacher, because the teacher is still the head of the major (delete or edit major\'s data before deleting this teacher data).');
+        }
         $teacher->delete();
         if ($teacher->image && !strpos($teacher->image, "default")) Storage::delete($teacher->image);
         $teacher->delete();

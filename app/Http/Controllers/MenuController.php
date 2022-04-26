@@ -102,6 +102,9 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
+        if ($menu->pages()->get()->isNotEmpty()) {
+            return redirect()->route('dashboard.menus.index')->with('errorMessage', 'Can\'t delete this menu, because there pages that still use it.');
+        }
         $menu->delete();
         return redirect()->route('dashboard.menus.index')->with('success', 'Menu has been deleted.');
     }

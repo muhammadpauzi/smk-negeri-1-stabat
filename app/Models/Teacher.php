@@ -10,4 +10,9 @@ class Teacher extends Model
     use HasFactory;
 
     protected $guarded = ["id"];
+
+    public function majors()
+    {
+        return $this->hasMany(Major::class, 'head_of_major_id');
+    }
 }
