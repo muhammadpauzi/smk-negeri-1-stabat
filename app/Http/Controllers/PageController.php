@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
@@ -90,6 +91,13 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
+        // $this->authorize('update', $page); // sudah di middleware
+
+        return view('pages.edit', [
+            "title" => "Edit Page",
+            "menus" => Menu::all(),
+            "page" => $page
+        ]);
     }
 
     /**
@@ -99,9 +107,36 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Page $page)
     {
-        //
+        // $this->authorize('update', $page); // sudah di middleware
+
+        $rules = [
+            'title' => 'required|max:256',
+            'menu_id'   => 'required|numeric',
+            'image' => 'image|file|max:1024',
+            'body'   => 'required'
+        ];
+
+        if ($request->slug !== $page->slug) {
+            $rules['slug'] = 'required|unique:posts';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if ($request->post('old-page-image') && !strpos($page->image, "default")) Storage::delete($request->post('old-page-image'));
+            $validatedData['image'] = $request->file('image')->store('page-images');
+        }
+
+        if ($request->post('old-title') !== $request->post('title')) {
+            $title = $validatedData['title'];
+            $validatedData['slug'] = $this->slug($title, Page::class);
+        }
+
+        $page->update($validatedData);
+
+        return redirect()->route('dashboard.pages.index')->with('success', 'Page has been updated.');
     }
 
     /**
@@ -110,8 +145,12 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Page $page)
     {
-        //
+        $this->authorize('delete', $page);
+
+        if ($page->image && !strpos($page->image, "default")) Storage::delete($page->image);
+        $page->delete();
+        return redirect()->route('dashboard.pages.index')->with('success', 'Page has been deleted.');
     }
 }
