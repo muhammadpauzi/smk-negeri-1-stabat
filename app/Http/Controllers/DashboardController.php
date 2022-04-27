@@ -28,8 +28,8 @@ class DashboardController extends Controller
         // articles
         $articlesGroupByIsPublished = $articles->groupBy('is_published');
         $articlePercentages = [
-            "published" => round(($articlesGroupByIsPublished->get('1')->count() / $articles->count()) * 100), // 1 === true
-            "unpublished" => round(($articlesGroupByIsPublished->get('0')->count() / $articles->count()) * 100) // 0 === false
+            "published" => $articlesGroupByIsPublished->get('1') ? round(($articlesGroupByIsPublished->get('1')->count() / $articles->count()) * 100) : 0, // 1 === true
+            "unpublished" => $articlesGroupByIsPublished->get('0') ? round(($articlesGroupByIsPublished->get('0')->count() / $articles->count()) * 100) : 0 // 0 === false
         ];
 
         // total article views
@@ -38,9 +38,9 @@ class DashboardController extends Controller
         // users
         $usersGroupByRole = $users->groupBy('role');
         $userPercentages = [
-            "superadmin" => round(($usersGroupByRole->get('superadmin')->count() / $users->count()) * 100),
-            "admin" => round(($usersGroupByRole->get('admin')->count() / $users->count()) * 100),
-            "editor" => round(($usersGroupByRole->get('editor')->count() / $users->count()) * 100),
+            "superadmin" => $usersGroupByRole->get('superadmin') ? round(($usersGroupByRole->get('superadmin')->count() / $users->count()) * 100) : 0,
+            "admin" => $usersGroupByRole->get('admin') ? round(($usersGroupByRole->get('admin')->count() / $users->count()) * 100) : 0,
+            "editor" => $usersGroupByRole->get('editor') ? round(($usersGroupByRole->get('editor')->count() / $users->count()) * 100) : 0,
         ];
 
         return view('dashboard.index', [

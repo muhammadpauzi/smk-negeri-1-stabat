@@ -16,18 +16,17 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::truncate();
-        Category::insertOrIgnore([
-            [
-                "name"  => "Umum",
-                "slug"  => "umum"
-            ],
-            [
-                "name"  => "OSIS",
-                "slug"  => "osis"
-            ], [
-                "name"  => "Pengumuman",
-                "slug"  => "pengumuman"
-            ]
+        Category::create([
+            "name"  => "Umum",
+            "slug"  => "umum"
+        ]);
+        Category::create([
+            "name"  => "OSIS",
+            "slug"  => "osis"
+        ]);
+        Category::create([
+            "name"  => "Pengumuman",
+            "slug"  => "pengumuman"
         ]);
     }
 }
