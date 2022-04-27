@@ -119,6 +119,66 @@
                         </div>
                     </li>
 
+                    <!-- 1. tambahkan halaman pages detail -->
+                    <!-- 2. fix routeIs() dibawah ini dan juga tambahkan routeIs -->
+                    @foreach($menus as $menu)
+                    @if( $menu->pages->isNotEmpty())
+                    @if(count($menu->pages) === 1)
+                    <li class="nav-item">
+                        <a class="nav-link py-3 py-md-0" href="/pages/{{ $menu->pages[0]->slug }}">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                @if($menu->icon)
+                                {!! $menu->icon !!}
+                                @else
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <rect x="4" y="4" width="6" height="5" rx="2" />
+                                    <rect x="4" y="13" width="6" height="7" rx="2" />
+                                    <rect x="14" y="4" width="6" height="16" rx="2" />
+                                </svg>
+                                @endif
+                            </span>
+                            <span class="nav-link-title">
+                                {{ $menu->pages[0]->title }}
+                            </span>
+                        </a>
+                    </li>
+                    @else
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                @if($menu->icon)
+                                {!! $menu->icon !!}
+                                @else
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <rect x="4" y="4" width="6" height="5" rx="2" />
+                                    <rect x="4" y="13" width="6" height="7" rx="2" />
+                                    <rect x="14" y="4" width="6" height="16" rx="2" />
+                                </svg>
+                                @endif
+                            </span>
+                            <span class="nav-link-title">
+                                {{ $menu->name }}
+                            </span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    @foreach($menu->pages as $page)
+                                    <a class="dropdown-item" href="/pages/{{ $page->slug }}">
+                                        {{ $page->title }}
+                                    </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    @endif
+                    @endif
+                    @endforeach
+
+
                 </ul>
                 <!-- right side of second navbar -->
                 <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">

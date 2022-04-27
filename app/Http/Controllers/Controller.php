@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Major;
+use App\Models\Menu;
+use App\Models\SchoolProfile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -32,5 +34,14 @@ class Controller extends BaseController
     public function majors()
     {
         return Major::all();
+    }
+
+    protected function view(string $view, $data)
+    {
+        $schoolProfile = SchoolProfile::all()->first();
+        $data["schoolProfile"] = $schoolProfile;
+        $data["menus"] = Menu::query()->with(['pages'])->get();
+        $data["majors"] = $this->majors();
+        return view($view, $data);
     }
 }

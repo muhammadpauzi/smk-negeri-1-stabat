@@ -10,6 +10,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Public\ArticleController as PublicArticleController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\MajorController as PublicMajorController;
+use App\Http\Controllers\Public\PageController as PublicPageController;
 use App\Http\Controllers\Public\SchoolProfileController as PublicSchoolProfileController;
 use App\Http\Controllers\SchoolProfileController;
 use App\Http\Controllers\SlideController;
@@ -28,6 +29,7 @@ Route::prefix('/')->group(function () {
     Route::get('/articles/{article}', [PublicArticleController::class, 'show'])->name('articles.show');
     Route::get('/school-profile', [PublicSchoolProfileController::class, 'index'])->name('school-profile.index');
     Route::get('/majors/{major}', [PublicMajorController::class, 'show'])->name('majors.show');
+    Route::get('/pages/{page}', [PublicPageController::class, 'show'])->name('pages.show');
 });
 
 Route::middleware('auth')->group(function () {

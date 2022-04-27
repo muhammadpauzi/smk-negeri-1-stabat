@@ -39,7 +39,7 @@
 					<h1 class="display-6 fw-normal">{{ $article->title }}</h1>
 					<div class="dropdown-divider"></div>
 
-					<div class="mt-5">
+					<div class="mt-5 markdown">
 						{!! $article->body !!}
 					</div>
 				</div>

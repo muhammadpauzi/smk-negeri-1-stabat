@@ -10,11 +10,8 @@ class SchoolProfileController extends Controller
 {
     public function index()
     {
-        $schoolProfile = SchoolProfile::all()->first();
-
-        return view('public.school-profiles.index', [
+        return $this->view('public.school-profiles.index', [
             "title" => "School Profile",
-            "profile" => $schoolProfile
         ]);
     }
 }

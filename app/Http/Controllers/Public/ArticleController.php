@@ -16,15 +16,12 @@ class ArticleController extends Controller
             // return abort(403, 'This article not published yet.');
             return abort(404);
         }
-        $schoolProfile = SchoolProfile::all()->first();
 
         $article->increment('views', 1);
 
-        return view('public.articles.show', [
+        return $this->view('public.articles.show', [
             "title" => "$article->title",
             "article" => $article,
-            "schoolProfile" => $schoolProfile,
-            "majors" => $this->majors()
         ]);
     }
 }

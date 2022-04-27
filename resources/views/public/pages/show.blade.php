@@ -6,23 +6,21 @@
         <div class="row py-4">
             <div class="col-lg-8">
                 <div class="card mb-3">
-                    <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url({{ asset('storage/' . $article->image) }})"></div>
+                    @if( $page->image )
+                    <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url({{ asset('storage/' . $page->image) }})"></div>
+                    @endif
 
                     <div class="card-body py-3 px-2 px-md-3">
-                        <div class="d-none d-md-block">
-                            @include('partials.article-detail-info')
-                        </div>
-
-                        <h1 class="card-title mb-3 fw-bold" style="font-size: 1.5rem !important;">{{ $article->title }}</h1>
+                        <h1 class="card-title mb-3 fw-bold" style="font-size: 1.5rem !important;">{{ $page->title }}</h1>
 
                         <div class="dropdown-divider"></div>
 
-                        <div style="font-size: 1rem; " class="markdown">
-                            {!! $article->body !!}
+                        <div style="font-size: 1rem;" class="markdown">
+                            {!! $page->body !!}
                         </div>
 
-                        <div class="d-block d-md-none">
-                            @include('partials.article-detail-info')
+                        <div>
+                            @include('partials.page-detail-info')
                         </div>
                     </div>
                 </div>

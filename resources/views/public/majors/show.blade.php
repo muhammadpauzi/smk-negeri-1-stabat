@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="container px-0 px-md-3">
+<div class="container-xlpx-0 px-md-3">
     <div class="p-2">
         <div class="row py-4">
             <div class="col-lg-8">
@@ -13,7 +13,7 @@
 
                         <div class="dropdown-divider"></div>
 
-                        <div style="font-size: 1rem;">
+                        <div style="font-size: 1rem;" class="markdown">
                             {!! $major->body !!}
                         </div>
                     </div>
