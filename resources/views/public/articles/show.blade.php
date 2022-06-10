@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="container-xlpx-0 px-md-3">
+<div class="container-xl px-0 px-md-3">
     <div class="p-2">
         <div class="row py-4">
             <div class="col-lg-8">
