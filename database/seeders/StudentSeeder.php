@@ -17,8 +17,6 @@ class StudentSeeder extends Seeder
     public function run()
     {
         Student::truncate();
-        $json = '';
-
-        Student::insertOrIgnore(json_decode($json, true));
+        Student::factory()->count(100)->create();
     }
 }

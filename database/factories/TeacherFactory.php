@@ -17,7 +17,13 @@ class TeacherFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' =>  $this->faker->name(),
+            'nuptk' =>  $this->faker->numerify('################'),
+            'nip' =>  $this->faker->numerify('################'),
+            'address' =>  $this->faker->address(),
+            'jenis_ptk' =>  "Contoh Jenis PTK " . $this->faker->numerify('##'),
+            'tugas_tambahan' =>  "Contoh Tugas Tambahan " . $this->faker->numerify('##'),
+            'golongan' =>  "Contoh Golongan " . $this->faker->numerify('##')
         ];
     }
 }

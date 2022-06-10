@@ -108,10 +108,10 @@
                                 Profile
                             </span>
                         </a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu {{ request()->routeIs('school-profile.*') ? 'active' : '' }}">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="">
+                                    <a class="dropdown-item" href="{{ route('school-profile.index') }}">
                                         School Profile
                                     </a>
                                 </div>

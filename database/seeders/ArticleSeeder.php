@@ -19,6 +19,6 @@ class ArticleSeeder extends Seeder
     public function run()
     {
         Article::truncate();
-        Article::factory()->count(100)->create();
+        Article::factory()->count(10)->create();
     }
 }

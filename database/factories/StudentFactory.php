@@ -17,7 +17,14 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' =>  $this->faker->name(),
+            'nisn' =>  $this->faker->numerify('##########'),
+            'gender' => ['pria', 'wanita'][mt_rand(0, 1)],
+            'place_of_birth' =>  $this->faker->address(),
+            'date_of_birth' => $this->faker->dateTime(),
+            'religion' =>  ['islam', 'katolik', 'protestan', 'hindu', 'buddha'][mt_rand(0, 4)],
+            'address' =>  $this->faker->address(),
+            'rombongan_belajar' =>  "Contoh Rombel " . $this->faker->numerify('##')
         ];
     }
 }

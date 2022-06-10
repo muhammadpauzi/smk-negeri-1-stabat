@@ -16,8 +16,6 @@ class TeacherSeeder extends Seeder
     public function run()
     {
         Teacher::truncate();
-        $json = '';
-
-        Teacher::insertOrIgnore(json_decode($json, true));
+        Teacher::factory()->count(50)->create();
     }
 }

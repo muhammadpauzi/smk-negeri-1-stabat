@@ -24,6 +24,7 @@ class HomeController extends Controller
 
         $articles = Article::with(["author", "category"])
             ->latest()
+            ->where('is_published', '1')
             ->filter(request(["search", 'category', 'author']))
             ->paginate(10)->withQueryString();
 
